@@ -3,6 +3,7 @@
   import AdminHome from "./lib/AdminHome.svelte"
   import FormComponent from "./lib/Form.svelte"
     import Inicio from "./lib/Inicio.svelte";
+    import Admin from "./lib/Admin.svelte";
   export let url = "";
 </script>
 
@@ -11,6 +12,7 @@
     <Route path="/admin" component={AdminHome} />
     <Route path="/" component={FormComponent}/>
     <Route path="/inicio" component={Inicio}/>
+    <Route path="/loginAdmin" component={Admin}/>
     
   </div>
 </Router>
