@@ -1,217 +1,5 @@
-<script>
-    // Aquí podrías agregar lógica o datos reactivos si es necesario
-  </script>
-  
-  <style>
-body {
-  margin: 0;
-  overflow: hidden;
-}
-
-.ocean {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(0deg, #182848, #2980b9);
-  z-index: -1; /* Ensure it stays in the background */
-}
 
 
-@keyframes animateSprite {
-  0% {
-    background-position: -600px; /* Starting position moving left sprite */
-  }
-  20% {
-    background-position: 0px; /* Straight on sprite */
-  }
-  25% {
-    background-position: -200px; /* Moving up sprite */
-  }
-  35% {
-    background-position: -400px; /* Moving right sprite */
-  }
-  40% {
-    background-position: -400px;
-  }
-  50% {
-    background-position: -200px;  /* Moving up sprite */
-  }
-  60% {
-    background-position: -0px; /* Straight on sprite */
-  }
-  67% {
-    background-position: -600px; /* Moving up sprite */
-  }
-
-  100% {
-    background-position: -600px;
-  }
-}
-
-@keyframes swim {
-  0% {
-    transform: translate(0, 0); /* Starting position */
-  }
-  20% {
-    transform: translate(calc(-50vw - 100px), 0); /* Animate to center of screen */
-  }
-  25% {
-    transform: translate(calc(-50vw - 100px), 0); /* Stay at the center for 1 second */
-  }
-  35% {
-    transform: translate(calc(-50vw - 100px), -20vh); /* Animate up for 2 seconds */
-  }
-  50% {
-    transform: translate(-25vw, 15vh); /* Animate bottom right for 3 seconds */
-  }
-  60% {
-    transform: translate(-25vw, -20vh); /* Animate up at right of the screen */
-  }
-  67% {
-    transform: translate(-25vw, -20vh);
-  }
-
-  100% {
-    transform: translate(calc(-100vw - 300px), 0); /* Animate past left past the screen */
-  }
-}
-
-.bubble {
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  position: absolute;
-  background-color: white;
-  bottom: -30px;
-  opacity: 0.2;
-  animation: bubble 15s ease-in-out infinite,
-    sideWays 4s ease-in-out infinite alternate;
-}
-
-@keyframes bubble {
-  0% {
-    transform: translateY(0%);
-    opacity: 0.06;
-  }
-  100% {
-    transform: translateY(-120vh);
-  }
-}
-
-@keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: 200px;
-  }
-}
-
-.bubble--1 {
-  left: 10%;
-  animation-delay: 0.5s;
-  animation-duration: 16s;
-  opacity: 0.2;
-}
-
-.bubble--2 {
-  width: 15px;
-  height: 15px;
-  left: 40%;
-  animation-delay: 1s;
-  animation-duration: 10s;
-  opacity: 0.1;
-}
-
-.bubble--3 {
-  width: 10px;
-  height: 10px;
-  left: 30%;
-  animation-delay: 5s;
-  animation-duration: 20s;
-  opacity: 0.3;
-}
-
-.bubble--4 {
-  width: 25px;
-  height: 25px;
-  left: 40%;
-  animation-delay: 8s;
-  animation-duration: 17s;
-  opacity: 0.2;
-}
-
-.bubble--5 {
-  width: 30px;
-  height: 30px;
-  left: 60%;
-  animation-delay: 10s;
-  animation-duration: 15s;
-  opacity: 0.1;
-}
-
-.bubble--6 {
-  width: 10px;
-  height: 10px;
-  left: 80%;
-  animation-delay: 3s;
-  animation-duration: 30s;
-  opacity: 0.4;
-}
-
-.bubble--7 {
-  width: 15px;
-  height: 15px;
-  left: 90%;
-  animation-delay: -7s;
-  animation-duration: 25s;
-  opacity: 0.3;
-}
-
-.bubble--9 {
-  width: 20px;
-  height: 20px;
-  left: 50%;
-  bottom: 30px;
-  animation-delay: -5s;
-  animation-duration: 19s;
-  opacity: 0.2;
-}
-
-.bubble--10 {
-  width: 40px;
-  height: 40px;
-  left: 30%;
-  bottom: 30px;
-  animation-delay: -21s;
-  animation-duration: 16s;
-  opacity: 0.3;
-}
-
-.bubble--11 {
-  width: 30px;
-  height: 30px;
-  left: 60%;
-  bottom: 30px;
-  animation-delay: -13.75s;
-  animation-duration: 20s;
-  opacity: 0.3;
-}
-
-.bubble--11 {
-  width: 25px;
-  height: 25px;
-  left: 90%;
-  bottom: 30px;
-  animation-delay: -10.5s;
-  animation-duration: 19s;
-  opacity: 0.3;
-}
-
-  </style>
-  
   <div class="ocean">
     <div class="bubble bubble--1"></div>
     <div class="bubble bubble--2"></div>
@@ -227,4 +15,52 @@ body {
     <div class="bubble bubble--12"></div>
    
   </div>
+  <link rel="stylesheet" href="fondo.css">
+
+
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="urbe_logo.png" class="w-16 zoom-img" alt="URBE Logo" />
+    </div>
+    <div class="logo-right">
+      <img src="public\logo_huella.png" class="w-16 zoom-img" alt="Huella logo" />
+    </div>
+  </nav>
   
+  <link rel="stylesheet" href="inicio.css">
+
+
+  <div class="form-container">
+      <form class="form">
+          <label for="userType">Tipo de usuario:</label>
+          <select id="userType" bind:value={userType}>
+              <option value="">Selecciona una opción</option>
+              <option value="profesor">Profesor</option>
+              <option value="estudiante">Estudiante</option>
+          </select>
+  
+          <label for="gender">Género:</label>
+          <select id="gender" bind:value={gender}>
+              <option value="">Selecciona una opción</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+          </select>
+  
+          <label for="cedula">Ingrese su ID:</label>
+          <input type="text" id="cedula" bind:value={cedula} pattern="[0-9]{11}" required>
+      </form>
+  </div>
+  
+
+  <script>
+
+  let cedula = "";
+  let id = "";
+  
+    let userType = "";
+  let gender = "";
+
+  
+
+  </script>
