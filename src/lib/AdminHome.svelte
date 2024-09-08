@@ -94,6 +94,7 @@
       </div>
     </div>
     <img src="urbe_logo.png" class="w-16 zoom-img" alt="" />
+    <img src="public\logo_huella.png" class="w-16 zoom-img" alt="" />
   </div>
   <section class="flex justify-around my-3">
     <BlueBox title="Personas" body="12.128" />
