@@ -22,6 +22,11 @@
             text-align: center;
         }
     }
+    .toilet-icon {
+        width: 50px; /* Ajusta el ancho de la imagen */
+        height: 50px; /* Ajusta la altura de la imagen */
+        margin-left: 8px;
+    }
 </style>
 
 <div class="ocean">
@@ -50,13 +55,13 @@
 </nav>
 
 <div class="flex justify-center items-center h-screen relative z-1 pt-16">
-    <form class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg grid grid-cols-2 gap-4 w-full md:w-1/2 max-h-full overflow-auto">
-        <div class="col-span-2 relative z-10 mb-4 text-center">
+    <form class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-1/2 max-h-full overflow-auto">
+        <div class="col-span-1 sm:col-span-2 relative z-10 mb-4 text-center">
             <h2 class="text-2xl font-bold text-black-100">Formulario de Registro</h2>
             <h2 class="text-2xl font-bold text-blue-600 animate-clip" style="position: relative; top: -33px;">Formulario de Registro</h2>
         </div>
 
-        <div class="flex flex-col items-center col-span-2">
+        <div class="flex flex-col items-center col-span-1 sm:col-span-2">
             <label class="text-lg mb-2">¿En qué bloque frecuentas más al baño?</label>
             <select bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg">
                 <option value="">Selecciona una opción</option>
@@ -68,9 +73,8 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 2)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 2) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits2 = decrement(bathroomVisits2)}>-</button>
                 <input type="number" bind:value={bathroomVisits2} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
@@ -78,9 +82,8 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 3)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 3) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits3 = decrement(bathroomVisits3)}>-</button>
                 <input type="number" bind:value={bathroomVisits3} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits3 = increment(bathroomVisits3)}>+</button>
@@ -88,9 +91,8 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 4)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 4) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits4 = decrement(bathroomVisits4)}>-</button>
                 <input type="number" bind:value={bathroomVisits4} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits4 = increment(bathroomVisits4)}>+</button>
@@ -98,9 +100,8 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 5)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 5) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits5 = decrement(bathroomVisits5)}>-</button>
                 <input type="number" bind:value={bathroomVisits5} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits5 = increment(bathroomVisits5)}>+</button>
@@ -108,9 +109,8 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 6)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 6) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits6 = decrement(bathroomVisits6)}>-</button>
                 <input type="number" bind:value={bathroomVisits6} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits6 = increment(bathroomVisits6)}>+</button>
@@ -118,16 +118,15 @@
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 7)</label>
+            <label class="text-lg mb-2">¿Cuántas veces vas al baño? (Pregunta 7) <img src="public\ignodoro.png" alt="Toilet Icon" class="toilet-icon"></label>
             <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-toilet mr-2"></i>
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits7 = decrement(bathroomVisits7)}>-</button>
                 <input type="number" bind:value={bathroomVisits7} class="mx-2 p-2 w-16 text-lg text-center rounded border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits7 = increment(bathroomVisits7)}>+</button>
             </div>
         </div>
 
-        <div class="col-span-2 flex justify-center">
+        <div class="col-span-1 sm:col-span-2 flex justify-center">
             <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full">Continuar</button>
         </div>
     </form>
