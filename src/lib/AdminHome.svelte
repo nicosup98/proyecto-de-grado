@@ -2,7 +2,6 @@
   import BlueBox from "./BlueBox.svelte";
   import DonutChart from "./DonutChart.svelte";
   import BarChart from "./BarChart.svelte";
-
   const dataOfdispenser = [
     {
       dispensador: "lavamanos",
@@ -81,7 +80,7 @@
             <img src="burger.svg" alt="" />
           </div>
           <div class="flex items-center gap-1">
-            bienvenido admin <img src="image.png" class="w-4" alt="" />
+            Bienvenido Admin <img src="image.png" class="w-4" alt="" />
           </div>
         </label>
       </div>
@@ -90,24 +89,25 @@
         ></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- Sidebar content here -->
-          <li><button class="btn btn-error rounded">cerrar sesion</button></li>
+          <li><button class="btn btn-error rounded">Cerrar Sesion</button></li>
         </ul>
       </div>
     </div>
-    <img src="urbe_logo.png" class="w-16" alt="" />
+    <img src="urbe_logo.png" class="w-16 zoom-img" alt="" />
+    <img src="public\logo_huella.png" class="w-16 zoom-img" alt="" />
   </div>
   <section class="flex justify-around my-3">
-    <BlueBox title="personas" body="12.128" />
-    <BlueBox title="promedio por persona" body="62 L" />
-    <BlueBox title="litros mensuales" body="80000 L" />
+    <BlueBox title="Personas" body="12.128" />
+    <BlueBox title="Promedio por Persona" body="62 L" />
+    <BlueBox title="Litros Mensuales" body="80000 L" />
     <aside class=" flex-col p-3 w-[245px]">
       <div>
-        <span class="text-base">promedio de litros por persona (mensuales)</span
+        <span class="text-base">Promedio de Litros por Persona (Mensuales)</span
         >
         <p class="text-xl text-blue-500 my-1">62 L</p>
       </div>
       <div>
-        <span class="text-base">personas registradas</span>
+        <span class="text-base">Personas Registradas</span>
         <p class="text-xl text-blue-500">12.128</p>
       </div>
     </aside>
@@ -115,16 +115,38 @@
   <div class="divider"></div>
   <section class="flex justify-around gap-4">
     <div class="text-center">
-      <span class="text-lg"> consumo por dispensador</span>
+      <span class="text-lg" id="consumo-dispensador">Consumo por Dispensador</span>
       <DonutChart width={450} data={dataOfdispenser} />
     </div>
     <div class="text-center">
-      <span class="text-lg">consumo por bloque</span>
+      <span class="text-lg" id="consumo-bloque">Consumo por Bloque</span>
       <BarChart data={dataOfBlocks} />
     </div>
     <div class="text-center">
-      <span class="text-lg">consumo por tipo de persona</span>
+      <span class="text-lg" id="consumo-persona">Consumo por Tipo de Persona</span>
       <BarChart data={dataOfPersons} color="#367588" width={430}/>
     </div>
   </section>
 </div>
+<section>
+  <div class="stats shadow custom-position">
+    <div class="stat place-items-center">
+      <div class="stat-title">Downloads</div>
+      <div class="stat-value">31K</div>
+      <div class="stat-desc">From January 1st to February 1st</div>
+    </div>
+  
+    <div class="stat place-items-center">
+      <div class="stat-title">Users</div>
+      <div class="stat-value text-secondary">4,200</div>
+      <div class="stat-desc text-secondary">↗︎ 40 (2%)</div>
+    </div>
+  
+    <div class="stat place-items-center">
+      <div class="stat-title">New Registers</div>
+      <div class="stat-value">1,200</div>
+      <div class="stat-desc">↘︎ 90 (14%)</div>
+    </div>
+  </div>
+</section>
+

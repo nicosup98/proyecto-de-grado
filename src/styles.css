@@ -1,0 +1,10 @@
+
+.zoom-img {
+    transition: transform 0.3s ease; /* Transición suave */
+  }
+  
+  /* Efecto de zoom al pasar el cursor */
+  .zoom-img:hover {
+    transform: scale(1.2); /
+}
+
