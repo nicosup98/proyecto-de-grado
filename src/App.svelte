@@ -1,9 +1,10 @@
 <script>
   import { Router, Route } from "svelte-routing";
-  import AdminHome from "./lib/AdminHome.svelte"
-  import FormComponent from "./lib/Form.svelte"
-    import Inicio from "./lib/Inicio.svelte";
-    import Admin from "./lib/Admin.svelte";
+  import AdminHome from "./lib/AdminHome.svelte";
+  import FormComponent from "./lib/Form.svelte";
+  import Inicio from "./lib/Inicio.svelte";
+  import Formulario from "./lib/Formulario.svelte"; // Actualizado
+  import Admin from "./lib/Admin.svelte";
   export let url = "";
 </script>
 
@@ -13,6 +14,6 @@
     <Route path="/" component={FormComponent}/>
     <Route path="/inicio" component={Inicio}/>
     <Route path="/loginAdmin" component={Admin}/>
-    
+    <Route path="/formulario" component={Formulario}/>
   </div>
 </Router>
