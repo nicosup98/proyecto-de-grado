@@ -42,76 +42,95 @@
 </nav>
 
 <div class="flex justify-center items-center h-screen relative z-1 pt-16">
-    <form class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full md:w-1/3 max-h-96 overflow-y-auto">
+    <form style="background-image: url('/fachada-completa.jpg')" class="backdrop-brightness-50 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-1/3 max-h-96 overflow-y-auto bg-center bg-cover bg-no-repeat">
+
         <div class="relative z-10 mb-4 text-center">
             <h2 class="text-2xl font-bold text-white">Formulario de Registro</h2>
             <h2 class="text-2xl font-bold text-white animate-clip" style="position: relative; top: -33px;">Formulario de Registro</h2>
         </div>
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white relative text-center">¿Cuál es el lugar en el que consideras que gastas más agua?</label>
-            <select bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg rounded-lg text-center relative ">
-                <option value="">Selecciona una opción</option>
-                <option value="Bloque A">Bloque A</option>
-                <option value="Bloque B">Bloque B</option>
-                <option value="Bloque C">Bloque C</option>
-                <option value="Bloque D">Bloque D</option>
-            </select>
+            <label class="text-lg mb-2 text-white relative text-center">¿Cuál es el lugar en el que consideras que gastas más agua?
+
+                <select bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Bloque A">Bloque A</option>
+                    <option value="Bloque B">Bloque B</option>
+                    <option value="Bloque C">Bloque C</option>
+                    <option value="Bloque D">Bloque D</option>
+                </select>
+
+            </label>
         </div>
 
         <hr class="border-t border-gray-300 my-4">
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
-            <div class="flex items-center justify-around mb-4">
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = decrement(bathroomVisits2)}>-</button>
-                <input type="number" bind:value={bathroomVisits2} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
-            </div>
+            <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2">
+            
+                <div class="flex items-center justify-around mb-4">
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = decrement(bathroomVisits2)}>-</button>
+                    <input type="number" bind:value={bathroomVisits2} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
+                </div>
+
+            </label>
         </div>
 
         <hr class="border-t border-gray-300 my-4">
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el inodoro en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
-            <div class="flex items-center justify-center mb-4">
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = decrement(bathroomVisits3)}>-</button>
-                <input type="number" bind:value={bathroomVisits3} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = increment(bathroomVisits3)}>+</button>
-            </div>
+            <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el inodoro en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2">
+            
+                <div class="flex items-center justify-center mb-4">
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = decrement(bathroomVisits3)}>-</button>
+                    <input type="number" bind:value={bathroomVisits3} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = increment(bathroomVisits3)}>+</button>
+                </div>
+
+            </label>
         </div>
 
         <hr class="border-t border-gray-300 my-4">
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white text-center">¿Cuántos minutos en promedio dura tu ducha diaria? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
-            <div class="flex items-center justify-center mb-4">
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = decrement(bathroomVisits4)}>-</button>
-                <input type="number" bind:value={bathroomVisits4} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = increment(bathroomVisits4)}>+</button>
-            </div>
+            <label class="text-lg mb-2 text-white text-center">¿Cuántos minutos en promedio dura tu ducha diaria? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2">
+            
+                <div class="flex items-center justify-center mb-4">
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = decrement(bathroomVisits4)}>-</button>
+                    <input type="number" bind:value={bathroomVisits4} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = increment(bathroomVisits4)}>+</button>
+                </div>
+            </label>
         </div>
 
         <hr class="border-t border-gray-300 my-4">
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white text-center">¿Cuántos litros de agua crees que consumes en promedio a la semana usando el bebedero? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
-            <div class="flex items-center justify-center mb-4">
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = decrement(bathroomVisits5)}>-</button>
-                <input type="number" bind:value={bathroomVisits5} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
-                <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = increment(bathroomVisits5)}>+</button>
-            </div>
+            <label class="text-lg mb-2 text-white text-center">¿Cuántos litros de agua crees que consumes en promedio a la semana usando el bebedero? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2">
+            
+                <div class="flex items-center justify-center mb-4">
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = decrement(bathroomVisits5)}>-</button>
+                    <input type="number" bind:value={bathroomVisits5} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                    <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = increment(bathroomVisits5)}>+</button>
+                </div>
+
+            </label>
         </div>
 
         <hr class="border-t border-gray-300 my-4">
 
         <div class="flex flex-col items-center">
-            <label class="text-lg mb-2 text-white text-center">¿Cuántos segundos en total utilizas el lavamanos a lo largo de una semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
+            <label class="text-lg mb-2 text-white text-center">¿Cuántos segundos en total utilizas el lavamanos a lo largo de una semana? 
+            <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2">
+        
             <div class="flex items-center justify-center mb-4">
                 <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits6 = decrement(bathroomVisits6)}>-</button>
                 <input type="number" bind:value={bathroomVisits6} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
                 <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits6 = increment(bathroomVisits6)}>+</button>
             </div>
+        
+            </label>
         </div>
 
         <div class="flex justify-center">
