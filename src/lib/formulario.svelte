@@ -42,24 +42,31 @@
 </nav>
 
 <div class="flex justify-center items-center h-screen relative z-1 pt-16">
-    <form class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full md:w-1/3" style="max-height: 45rem; overflow-y: auto;">
-        <div class="relative z-10 mb-4 text-left ml-4">
-            <h2 class="text-2xl font-bold text-black-100">Formulario de Registro</h2>
-            <h2 class="text-2xl font-bold text-blue-600 animate-clip" style="position: relative; top: -33px;">Formulario de Registro</h2>
+
+    <form style="background-image: url('/fachada-completa.jpg')" class="backdrop-brightness-50 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-1/3 max-h-96 overflow-y-auto bg-center bg-cover bg-no-repeat">
+
+        <div class="relative z-10 mb-4 text-center">
+            <h2 class="text-2xl font-bold text-white">Formulario de Registro</h2>
+            <h2 class="text-2xl font-bold text-white animate-clip" style="position: relative; top: -33px;">Formulario de Registro</h2>
         </div>
 
-        <div class="flex flex-col items-start ml-4">
-            <label for="bathroomVisits1" class="text-lg mb-2 text-white">¿Cuál es el lugar en el que consideras que gastas más agua?</label>
-            <select id="bathroomVisits1" bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg">
-                <option value="">Selecciona una opción</option>
-                <option value="Bloque A">Bloque A</option>
-                <option value="Bloque B">Bloque B</option>
-                <option value="Bloque C">Bloque C</option>
-                <option value="Bloque D">Bloque D</option>
-            </select>
+        <div class="flex flex-col items-center">
+            <label class="text-lg mb-2 text-white relative text-center">¿Cuál es el lugar en el que consideras que gastas más agua?
+
+                <select bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Bloque A">Bloque A</option>
+                    <option value="Bloque B">Bloque B</option>
+                    <option value="Bloque C">Bloque C</option>
+                    <option value="Bloque D">Bloque D</option>
+                </select>
+
+            </label>
+
         </div>
 
         <hr class="border-t border-gray-300 my-4">
+
 
         <div class="flex flex-col items-start ml-4">
             <label for="bathroomVisits2" class="text-lg mb-2 text-white">¿Cuántas veces utilizas el urinario en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
@@ -68,9 +75,11 @@
                 <input id="bathroomVisits2" type="number" bind:value={bathroomVisits2} class="mx-2 p-2 w-16 text-lg text-center bg-transparent border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
             </div>
+
         </div>
 
         <hr class="border-t border-gray-300 my-4">
+
 
         <div class="flex flex-col items-start ml-4">
             <label for="bathroomVisits3" class="text-lg mb-2 text-white">¿Cuántas veces utilizas el inodoro en promedio a la semana? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
@@ -82,6 +91,7 @@
         </div>
 
         <hr class="border-t border-gray-300 my-4">
+
 
         <div class="flex flex-col items-start ml-4">
             <label for="bathroomVisits4" class="text-lg mb-2 text-white">¿Cuántos minutos en promedio dura tu ducha diaria? <img src="https://example.com/toilet.png" alt="Toilet Icon" class="w-12 h-12 ml-2"></label>
@@ -112,6 +122,8 @@
                 <input id="bathroomVisits6" type="number" bind:value={bathroomVisits6} class="mx-2 p-2 w-16 text-lg text-center bg-transparent border-none" readonly />
                 <button type="button" class="px-2 py-1 bg-gray-300 rounded" on:click={() => bathroomVisits6 = increment(bathroomVisits6)}>+</button>
             </div>
+        
+            </label>
         </div>
 
         <div class="flex justify-center">
