@@ -10,8 +10,6 @@
       text-align: center;
     }
   }
-
- 
 </style>
 
 <div class="ocean">
@@ -30,26 +28,25 @@
 </div>
 <link rel="stylesheet" href="fondo.css">
 
-<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-60 text-white p-2 flex justify-between items-center z-10 width: 100%  padding: 1rem">
+<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-60 text-white p-2 flex justify-between items-center z-10">
   <div class="flex items-center">
-      <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
+    <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
   </div>
   <div class="flex items-center">
-      <img src="public\huella_logo.png" class="w-16 zoom-img ml-2" alt="Huella logo" />
+    <img src="public/huella_logo.png" class="w-16 zoom-img ml-2" alt="Huella logo" />
   </div>
 </nav>
 
-<div class="flex flex-col md:flex-row justify-between items-center h-screen relative z-1 pt-16">
+<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1 pt-16 overflow-hidden">
   <div class="text-left w-full md:w-1/3 p-6">
     <h1 class="text-4xl font-bold text-white">Título del Formulario</h1>
     <p class="mt-4 text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
   </div>
-  <form class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat" style="background-image: url('/fachada-completa.jpg');">
-    <div class="absolute inset-0 bg-white bg-opacity-90 rounded-lg"></div>
-    <div class="relative z-10">
+  <form class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
+    <div class="absolute inset-0 bg-white bg-opacity-90 rounded-lg overflow-y-auto max-h-full"></div>
+    <div class="relative z-10 w-full">
       <div class="relative w-full mb-4 text-center" style="top: 0px;">
         <h2 class="text-2xl font-bold text-black-100 inline-block">Formulario de Registro</h2>
-        <h2 class="text-2xl font-bold text-blue-600 animate-clip inline-block" style="position: relative; top: -33px;">Formulario de Registro</h2>
       </div>
       <label for="userType" class="text-lg mb-2">Tipo de usuario:</label>
       <select id="userType" bind:value={userType} class="mb-4 p-2 w-full text-lg">
