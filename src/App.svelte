@@ -4,8 +4,10 @@
   import FormComponent from "./lib/Form.svelte";
   import Inicio from "./lib/Inicio.svelte";
   import Formulario from "./lib/Formulario.svelte";
+
 import Respuestas from "./lib/Respuestas.svelte";
   import Admin from "./lib/Admin.svelte";
+    import Prueba from "./lib/Prueba.svelte";
   export let url = "";
 </script>
 
@@ -17,5 +19,6 @@ import Respuestas from "./lib/Respuestas.svelte";
     <Route path="/loginAdmin" component={Admin}/>
     <Route path="/formulario" component={Formulario}/>
     <Route path="/respuestas" component={Respuestas}/>
+    <Route path="/prueba" component={Prueba}/>
   </div>
 </Router>
