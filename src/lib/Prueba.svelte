@@ -23,15 +23,20 @@
     }
 
     function addExpense() {
-        additionalExpenses.push({ name: newExpenseName, value: newExpenseValue });
-        newExpenseName = '';
-        newExpenseValue = 0;
-        showModal = false;
+        if (newExpenseName && newExpenseValue) {
+            additionalExpenses = [...additionalExpenses, { name: newExpenseName, value: newExpenseValue }];
+            newExpenseName = '';
+            newExpenseValue = 0;
+            showModal = false;
+        } else {
+            alert("Por favor, complete todos los campos.");
+        }
     }
 </script>
 
-<!-- Prueba -->
-
+<!-- Prueba565 -->
+<!-- Prueba565 -->
+ <!-- Prueba565 -->
 <div class="ocean">
     <div class="bubble bubble--1"></div>
     <div class="bubble bubble--2"></div>
@@ -52,7 +57,7 @@
         <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
     </div>
     <div class="flex items-center">
-        <img src="public\huella_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
+        <img src="sustentable_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
     </div>
 </nav>
 
@@ -145,8 +150,10 @@
                 </label>
             </div>
 
+            <hr class="border-t border-gray-300 my-4">
+
+            <!-- Aquí se muestran los gastos adicionales dentro del formulario -->
             {#each additionalExpenses as expense, index}
-                <hr class="border-t border-gray-300 my-4">
                 <div class="flex flex-col items-center">
                     <label class="text-lg mb-2 text-white text-center">{expense.name}
                         <div class="flex items-center justify-center mb-4">
@@ -156,6 +163,8 @@
                         </div>
                     </label>
                 </div>
+
+                <hr class="border-t border-gray-300 my-4">
             {/each}
 
             <div class="flex justify-center">
@@ -175,11 +184,11 @@
             <h3 class="text-xl mb-4">Agregar nuevo gasto de agua</h3>
             <label class="block mb-2">
                 Nombre del gasto:
-                <input type="text" bind:value={newExpenseName} class="p-2 border rounded w-full" />
+                <input type="text" bind:value={newExpenseName} class="p-2 border rounded w-full" required />
             </label>
             <label class="block mb-4">
                 Gasto por segundo:
-                <input type="number" bind:value={newExpenseValue} class="p-2 border rounded w-full" />
+                <input type="number" bind:value={newExpenseValue} class="p-2 border rounded w-full" required />
             </label>
             <div class="flex justify-end">
                 <button type="button" class="bg-blue-500 text-white p-2 rounded mr-2" on:click={addExpense}>Aceptar</button>
