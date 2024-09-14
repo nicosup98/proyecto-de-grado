@@ -33,7 +33,7 @@
     <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
   </div>
   <div class="flex items-center">
-    <img src="public/huella_logo.png" class="w-16 zoom-img ml-2" alt="Huella logo" />
+    <img src="sustentable_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
   </div>
 </nav>
 
