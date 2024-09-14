@@ -38,14 +38,14 @@
         <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
     </div>
     <div class="flex items-center">
-        <img src="public\huella_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
+        <img src="sustentable_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
     </div>
 </nav>
 
 <div class="flex justify-center items-center min-h-screen pt-24 pb-24">
     <div class="flex flex-col md:flex-row w-full md:w-2/3">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota ficiendo lo que tiene que hacer el usuario</h1>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota diciendo lo que tiene que hacer el usuario</h1>
             <p class="text-lg">Ejemplo: tiene que poner el consumo de agua dentro de urbe, no a las afueras.</p>
         </div>
         <form class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto">
@@ -72,9 +72,9 @@
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? 
                     <img src="icono_urinario.png" alt="Toilet Icon" class="w-25 h-15 ml-6 mt-0">
-                    <div class="flex items-center justify-around mb-4">
+                    <div class="flex items-center justify-center mb-4">
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = decrement(bathroomVisits2)}>-</button>
-                        <input type="number" bind:value={bathroomVisits2} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <input type="number" bind:value={bathroomVisits2} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
                     </div>
                 </label>
@@ -87,7 +87,7 @@
                     <img src="icono_ignodoro.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = decrement(bathroomVisits3)}>-</button>
-                        <input type="number" bind:value={bathroomVisits3} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <input type="number" bind:value={bathroomVisits3} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = increment(bathroomVisits3)}>+</button>
                     </div>
                 </label>
@@ -100,7 +100,7 @@
                     <img src="icono_regadera.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = decrement(bathroomVisits4)}>-</button>
-                        <input type="number" bind:value={bathroomVisits4} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <input type="number" bind:value={bathroomVisits4} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits4 = increment(bathroomVisits4)}>+</button>
                     </div>
                 </label>
@@ -113,7 +113,7 @@
                     <img src="icono_bebedero.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = decrement(bathroomVisits5)}>-</button>
-                        <input type="number" bind:value={bathroomVisits5} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <input type="number" bind:value={bathroomVisits5} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = increment(bathroomVisits5)}>+</button>
                     </div>
                 </label>
@@ -126,7 +126,7 @@
                     <img src="icono_lavamanos.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits6 = decrement(bathroomVisits6)}>-</button>
-                        <input type="number" bind:value={bathroomVisits6} class="pl-4 w-20 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <input type="number" bind:value={bathroomVisits6} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
                         <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits6 = increment(bathroomVisits6)}>+</button>
                     </div>
                 </label>
