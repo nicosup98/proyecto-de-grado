@@ -63,6 +63,8 @@
                         <option value="Bloque B">Bloque B</option>
                         <option value="Bloque C">Bloque C</option>
                         <option value="Bloque D">Bloque D</option>
+                        <option value="Feria de comida">Feria de comida</option>
+                        <option value="Centro de mantenimiento">Centro de mantenimiento</option>
                     </select>
                 </label>
             </div>
