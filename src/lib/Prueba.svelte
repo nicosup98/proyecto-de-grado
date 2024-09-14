@@ -64,7 +64,7 @@
 <div class="flex justify-center items-center min-h-screen pt-24 pb-24">
     <div class="flex flex-col md:flex-row w-full md:w-2/3">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota ficiendo lo que tiene que hacer el usuario</h1>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota diciendo lo que tiene que hacer el usuario</h1>
             <p class="text-lg">Ejemplo: tiene que poner el consumo de agua dentro de urbe, no a las afueras.</p>
         </div>
         <form class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto">
