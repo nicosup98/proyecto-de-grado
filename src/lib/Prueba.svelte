@@ -13,6 +13,7 @@
     let newExpenseValue = 0;
     let showModal = false;
     let additionalExpenses = [];
+    let showAlert = false;
 
     function increment(value, step = 1) {
         return value + step;
@@ -31,6 +32,15 @@
         } else {
             alert("Por favor, complete todos los campos.");
         }
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        showAlert = true;
+        setTimeout(() => {
+            showAlert = false;
+            window.location.href = 'respuestas';
+        }, 500);
     }
 </script>
 
@@ -67,7 +77,7 @@
             <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota diciendo lo que tiene que hacer el usuario</h1>
             <p class="text-lg">Ejemplo: tiene que poner el consumo de agua dentro de urbe, no a las afueras.</p>
         </div>
-        <form class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto">
+        <form class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto" on:submit={handleSubmit}>
 
             <div class="relative z-10 mb-4 text-center">
                 <h2 class="text-2xl font-bold text-white animate-clip" style="position: relative; top: -33px;">Formulario de Registro</h2>
@@ -179,6 +189,14 @@
         </form>
     </div>
 </div>
+
+{#if showAlert}
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl mb-4">Respuestas enviadas satifactoriamente</h3>
+        </div>
+    </div>
+{/if}
 
 {#if showModal}
     <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
