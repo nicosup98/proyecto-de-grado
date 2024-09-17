@@ -2,6 +2,13 @@
   let email = "";
   let userType = "";
   let gender = "";
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    localStorage.setItem('userType', userType);
+    localStorage.setItem('gender', gender);
+    window.location.href = 'prueba'; // Redirigir a Prueba.svelte
+  }
 </script>
 
 <style>
@@ -42,7 +49,7 @@
     <h1 class="text-4xl font-bold text-white">Título del Formulario</h1>
     <p class="mt-4 text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
   </div>
-  <form class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
+  <form on:submit={handleSubmit} class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
     <div class="absolute inset-0 bg-white bg-opacity-90 rounded-lg overflow-y-auto max-h-full"></div>
     <div class="relative z-10 w-full">
       <div class="relative w-full mb-4 text-center" style="top: 0px;">
@@ -51,8 +58,8 @@
       <label for="userType" class="text-lg mb-2">Tipo de usuario:</label>
       <select id="userType" bind:value={userType} class="mb-4 p-2 w-full text-lg">
         <option value="">Selecciona una opción</option>
-        <option value="profesor">Estudiante</option>
-        <option value="estudiante">Profesor</option>
+        <option value="profesor">Profesor</option>
+        <option value="estudiante">Estudiante</option>
         <option value="visitante">Visitante</option>
         <option value="personal">Personal</option>
         <option value="mantenimiento">Personal de Mantenimiento</option>

@@ -14,6 +14,18 @@
     let showModal = false;
     let additionalExpenses = [];
     let showAlert = false;
+    let gender = '';
+    let userType = '';
+
+    onMount(() => {
+        gender = localStorage.getItem('gender');
+        userType = localStorage.getItem('userType');
+
+        // Redirigir a Inicio.svelte si no se han establecido userType o gender
+        if (!userType || !gender) {
+            window.location.href = 'inicio';
+        }
+    });
 
     function increment(value, step = 1) {
         return value + step;
@@ -44,9 +56,6 @@
     }
 </script>
 
-<!-- Prueba565 -->
-<!-- Prueba565 -->
- <!-- Prueba565 -->
 <div class="ocean">
     <div class="bubble bubble--1"></div>
     <div class="bubble bubble--2"></div>
@@ -74,8 +83,8 @@
 <div class="flex justify-center items-center min-h-screen pt-24 pb-24">
     <div class="flex flex-col md:flex-row w-full md:w-2/3">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">Aqui va una nota diciendo lo que tiene que hacer el usuario</h1>
-            <p class="text-lg">Ejemplo: tiene que poner el consumo de agua dentro de urbe, no a las afueras.</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Registro de Consumo de Agua dentro de URBE</h1>
+            <p class="text-lg">Por favor, registre su consumo de agua dentro de la universidad. Los datos deben ser un promedio semanal.</p>
         </div>
         <form class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto" on:submit={handleSubmit}>
 
@@ -91,14 +100,24 @@
                         <option value="Bloque B">Bloque B</option>
                         <option value="Bloque C">Bloque C</option>
                         <option value="Bloque D">Bloque D</option>
-                        <option value="Feria de comida">Feria de comida</option>
-                        <option value="Centro de mantenimiento">Centro de mantenimiento</option>
+                        <option value="Bloque E">Bloque E</option>
+                        <option value="Bloque F">Bloque F</option>
+                        <option value="Bloque G">Bloque G</option>
+                        {#if userType === 'personal' || userType === 'mantenimiento'}
+                            <option value="Feria de comida">Feria de Comida</option>
+                        {/if}
+                        {#if userType === 'mantenimiento'}
+                            <option value="Centro de mantenimiento">Centro de Mantenimiento</option>
+                        {/if}
+                        <option value="Rectorado">Rectorado</option>
+                        <option value="Cancha">Cancha</option>
                     </select>
                 </label>
             </div>
 
             <hr class="border-t border-gray-300 my-4">
 
+            {#if gender !== 'femenino'}
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? 
                     <img src="icono_urinario.png" alt="Toilet Icon" class="w-25 h-15 ml-6 mt-0">
@@ -109,8 +128,8 @@
                     </div>
                 </label>
             </div>
-
             <hr class="border-t border-gray-300 my-4">
+            {/if}
 
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el inodoro en promedio a la semana? 
@@ -179,9 +198,11 @@
                 <hr class="border-t border-gray-300 my-4">
             {/each}
 
+            {#if userType !== 'profesor' && userType !== 'estudiante' && userType !== 'visitante'}
             <div class="flex justify-center">
                 <button type="button" class="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-700 transition-colors duration-300 w-full" on:click={() => showModal = true}>Agregar gasto de agua</button>
             </div>
+            {/if}
 
             <div class="flex justify-center">
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full">Continuar</button>
