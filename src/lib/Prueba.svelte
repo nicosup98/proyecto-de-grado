@@ -1,12 +1,11 @@
 <script>
     import '/fondo.css';
     import { onMount } from 'svelte';
-
     let bloque_preferido = '';
-    let  cantidad_veces_urinario = 0;
-    let  cantidad_veces_inodoro = 0;
+    let cantidad_veces_urinario = 0;
+    let cantidad_veces_inodoro = 0;
     let bathroomVisits4 = 0;
-    let  tiempo_bebedero = 0;
+    let tiempo_bebedero = 0;
     let bathroomVisits6 = 0;
 
     let newExpenseName = '';
@@ -16,6 +15,7 @@
     let showAlert = false;
     let genero = '';
     let tipo_usuario = '';
+    let selectedExpenseOption = '';
 
     onMount(() => {
         genero = localStorage.getItem('genero');
@@ -36,10 +36,22 @@
     }
 
     function addExpense() {
-        if (newExpenseName && newExpenseValue) {
+        if (newExpenseValue < 0) {
+            alert("El gasto de agua en litros por semana no puede ser negativo.");
+            return;
+        }
+
+        if (selectedExpenseOption === 'Otro' && newExpenseName && newExpenseValue) {
             additionalExpenses = [...additionalExpenses, { name: newExpenseName, value: newExpenseValue }];
             newExpenseName = '';
             newExpenseValue = 0;
+            selectedExpenseOption = '';
+            showModal = false;
+        } else if (selectedExpenseOption !== 'Otro' && selectedExpenseOption) {
+            additionalExpenses = [...additionalExpenses, { name: selectedExpenseOption, value: newExpenseValue }];
+            newExpenseName = '';
+            newExpenseValue = 0;
+            selectedExpenseOption = '';
             showModal = false;
         } else {
             alert("Por favor, complete todos los campos.");
@@ -122,9 +134,9 @@
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? 
                     <img src="icono_urinario.png" alt="Toilet Icon" class="w-25 h-15 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_urinario = decrement( cantidad_veces_urinario)}>-</button>
-                        <input type="number" bind:value={ cantidad_veces_urinario} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_urinario = increment( cantidad_veces_urinario)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => cantidad_veces_urinario = decrement(cantidad_veces_urinario)}>-</button>
+                        <input type="number" bind:value={cantidad_veces_urinario} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => cantidad_veces_urinario = increment(cantidad_veces_urinario)}>+</button>
                     </div>
                 </label>
             </div>
@@ -135,9 +147,9 @@
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el inodoro en promedio a la semana? 
                     <img src="icono_ignodoro.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_inodoro = decrement( cantidad_veces_inodoro)}>-</button>
-                        <input type="number" bind:value={ cantidad_veces_inodoro} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_inodoro = increment( cantidad_veces_inodoro)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => cantidad_veces_inodoro = decrement(cantidad_veces_inodoro)}>-</button>
+                        <input type="number" bind:value={cantidad_veces_inodoro} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => cantidad_veces_inodoro = increment(cantidad_veces_inodoro)}>+</button>
                     </div>
                 </label>
             </div>
@@ -161,9 +173,9 @@
                 <label class="text-lg mb-2 text-white text-center">¿Cuántos litros de agua crees que consumes en promedio a la semana usando el bebedero? 
                     <img src="icono_bebedero.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  tiempo_bebedero = decrement( tiempo_bebedero, 0.1)}>-</button>
-                        <input type="number" bind:value={ tiempo_bebedero} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  tiempo_bebedero = increment( tiempo_bebedero, 0.1)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => tiempo_bebedero = decrement(tiempo_bebedero, 0.1)}>-</button>
+                        <input type="number" bind:value={tiempo_bebedero} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => tiempo_bebedero = increment(tiempo_bebedero, 0.1)}>+</button>
                     </div>
                 </label>
             </div>
@@ -198,7 +210,7 @@
                 <hr class="border-t border-gray-300 my-4">
             {/each}
 
-            {#if tipo_usuario !== 'profesor' && tipo_usuario !== 'estudiante' && tipo_usuario !== 'visitante'}
+            {#if tipo_usuario === 'mantenimiento'}
             <div class="flex justify-center">
                 <button type="button" class="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-700 transition-colors duration-300 w-full" on:click={() => showModal = true}>Agregar gasto de agua</button>
             </div>
@@ -224,12 +236,26 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-xl mb-4">Agregar nuevo gasto de agua</h3>
             <label class="block mb-2">
-                Nombre del gasto:
-                <input type="text" bind:value={newExpenseName} class="p-2 border rounded w-full" required />
+                Selecciona un gasto:
+                <select bind:value={selectedExpenseOption} class="p-2 border rounded w-full">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Urinario">Urinario</option>
+                    <option value="Inodoro">Inodoro</option>
+                    <option value="Ducha">Ducha</option>
+                    <option value="Bebedero">Bebedero</option>
+                    <option value="Lavamanos">Lavamanos</option>
+                    <option value="Otro">Otro</option>
+                </select>
             </label>
+            {#if selectedExpenseOption === 'Otro'}
+                <label class="block mb-2">
+                    Nombre del gasto:
+                    <input type="text" bind:value={newExpenseName} class="p-2 border rounded w-full" required />
+                </label>
+            {/if}
             <label class="block mb-4">
-                Gasto por segundo:
-                <input type="number" bind:value={newExpenseValue} class="p-2 border rounded w-full" required />
+                Gasto de agua en litros por semana:
+                <input type="number" bind:value={newExpenseValue} class="p-2 border rounded w-full" min="0" required />
             </label>
             <div class="flex justify-end">
                 <button type="button" class="bg-blue-500 text-white p-2 rounded mr-2" on:click={addExpense}>Aceptar</button>
