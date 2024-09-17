@@ -2,11 +2,11 @@
     import '/fondo.css';
     import { onMount } from 'svelte';
 
-    let bathroomVisits1 = '';
-    let bathroomVisits2 = 0;
-    let bathroomVisits3 = 0;
+    let bloque_preferido = '';
+    let  cantidad_veces_urinario = 0;
+    let  cantidad_veces_inodoro = 0;
     let bathroomVisits4 = 0;
-    let bathroomVisits5 = 0;
+    let  tiempo_bebedero = 0;
     let bathroomVisits6 = 0;
 
     let newExpenseName = '';
@@ -14,15 +14,15 @@
     let showModal = false;
     let additionalExpenses = [];
     let showAlert = false;
-    let gender = '';
-    let userType = '';
+    let genero = '';
+    let tipo_usuario = '';
 
     onMount(() => {
-        gender = localStorage.getItem('gender');
-        userType = localStorage.getItem('userType');
+        genero = localStorage.getItem('genero');
+        tipo_usuario = localStorage.getItem('tipo_usuario');
 
-        // Redirigir a Inicio.svelte si no se han establecido userType o gender
-        if (!userType || !gender) {
+        // Redirigir a Inicio.svelte si no se han establecido tipo_usuario o genero
+        if (!tipo_usuario || !genero) {
             window.location.href = 'inicio';
         }
     });
@@ -94,7 +94,7 @@
 
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white relative text-center">¿Cuál es el lugar en el que consideras que gastas más agua?
-                    <select bind:value={bathroomVisits1} class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black">
+                    <select bind:value={bloque_preferido} class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black">
                         <option value="">Selecciona una opción</option>
                         <option value="Bloque A">Bloque A</option>
                         <option value="Bloque B">Bloque B</option>
@@ -103,10 +103,10 @@
                         <option value="Bloque E">Bloque E</option>
                         <option value="Bloque F">Bloque F</option>
                         <option value="Bloque G">Bloque G</option>
-                        {#if userType === 'personal' || userType === 'mantenimiento'}
+                        {#if tipo_usuario === 'personal' || tipo_usuario === 'mantenimiento'}
                             <option value="Feria de comida">Feria de Comida</option>
                         {/if}
-                        {#if userType === 'mantenimiento'}
+                        {#if tipo_usuario === 'mantenimiento'}
                             <option value="Centro de mantenimiento">Centro de Mantenimiento</option>
                         {/if}
                         <option value="Rectorado">Rectorado</option>
@@ -117,14 +117,14 @@
 
             <hr class="border-t border-gray-300 my-4">
 
-            {#if gender !== 'femenino'}
+            {#if genero !== 'femenino'}
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el urinario en promedio a la semana? 
                     <img src="icono_urinario.png" alt="Toilet Icon" class="w-25 h-15 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = decrement(bathroomVisits2)}>-</button>
-                        <input type="number" bind:value={bathroomVisits2} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits2 = increment(bathroomVisits2)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_urinario = decrement( cantidad_veces_urinario)}>-</button>
+                        <input type="number" bind:value={ cantidad_veces_urinario} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_urinario = increment( cantidad_veces_urinario)}>+</button>
                     </div>
                 </label>
             </div>
@@ -135,9 +135,9 @@
                 <label class="text-lg mb-2 text-white text-center">¿Cuántas veces utilizas el inodoro en promedio a la semana? 
                     <img src="icono_ignodoro.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = decrement(bathroomVisits3)}>-</button>
-                        <input type="number" bind:value={bathroomVisits3} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits3 = increment(bathroomVisits3)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_inodoro = decrement( cantidad_veces_inodoro)}>-</button>
+                        <input type="number" bind:value={ cantidad_veces_inodoro} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  cantidad_veces_inodoro = increment( cantidad_veces_inodoro)}>+</button>
                     </div>
                 </label>
             </div>
@@ -161,9 +161,9 @@
                 <label class="text-lg mb-2 text-white text-center">¿Cuántos litros de agua crees que consumes en promedio a la semana usando el bebedero? 
                     <img src="icono_bebedero.png" alt="Toilet Icon" class="w-12 h-12 ml-6 mt-0">
                     <div class="flex items-center justify-center mb-4">
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = decrement(bathroomVisits5, 0.1)}>-</button>
-                        <input type="number" bind:value={bathroomVisits5} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
-                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() => bathroomVisits5 = increment(bathroomVisits5, 0.1)}>+</button>
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  tiempo_bebedero = decrement( tiempo_bebedero, 0.1)}>-</button>
+                        <input type="number" bind:value={ tiempo_bebedero} class="pl-4 w-28 text-center bg-transparent border-none text-white text-6xl" readonly />
+                        <button type="button" class="px-5 py-2 bg-transparent rounded text-6xl text-white" on:click={() =>  tiempo_bebedero = increment( tiempo_bebedero, 0.1)}>+</button>
                     </div>
                 </label>
             </div>
@@ -198,7 +198,7 @@
                 <hr class="border-t border-gray-300 my-4">
             {/each}
 
-            {#if userType !== 'profesor' && userType !== 'estudiante' && userType !== 'visitante'}
+            {#if tipo_usuario !== 'profesor' && tipo_usuario !== 'estudiante' && tipo_usuario !== 'visitante'}
             <div class="flex justify-center">
                 <button type="button" class="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-700 transition-colors duration-300 w-full" on:click={() => showModal = true}>Agregar gasto de agua</button>
             </div>

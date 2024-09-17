@@ -1,12 +1,12 @@
 <script>
   let email = "";
-  let userType = "";
-  let gender = "";
+  let tipo_usuario = "";
+  let genero = "";
 
   function handleSubmit(event) {
     event.preventDefault();
-    localStorage.setItem('userType', userType);
-    localStorage.setItem('gender', gender);
+    localStorage.setItem('tipo_usuario', tipo_usuario);
+    localStorage.setItem('genero', genero);
     window.location.href = 'prueba'; // Redirigir a Prueba.svelte
   }
 </script>
@@ -55,8 +55,8 @@
       <div class="relative w-full mb-4 text-center" style="top: 0px;">
         <h2 class="text-2xl font-bold text-black-100 inline-block">Formulario de Registro</h2>
       </div>
-      <label for="userType" class="text-lg mb-2">Tipo de usuario:</label>
-      <select id="userType" bind:value={userType} class="mb-4 p-2 w-full text-lg">
+      <label for="tipo_usuario" class="text-lg mb-2">Tipo de usuario:</label>
+      <select id="tipo_usuario" bind:value={tipo_usuario} class="mb-4 p-2 w-full text-lg">
         <option value="">Selecciona una opción</option>
         <option value="profesor">Profesor</option>
         <option value="estudiante">Estudiante</option>
@@ -65,8 +65,8 @@
         <option value="mantenimiento">Personal de Mantenimiento</option>
       </select>
 
-      <label for="gender" class="text-lg mb-2">Género:</label>
-      <select id="gender" bind:value={gender} class="mb-4 p-2 w-full text-lg">
+      <label for="genero" class="text-lg mb-2">Género:</label>
+      <select id="genero" bind:value={genero} class="mb-4 p-2 w-full text-lg">
         <option value="">Selecciona una opción</option>
         <option value="masculino">Masculino</option>
         <option value="femenino">Femenino</option>
