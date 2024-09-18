@@ -1,13 +1,17 @@
 <script>
+    import { navigate } from "svelte-routing";
+    import { updateForm } from "../stores/form";
+
   let email = "";
   let tipo_usuario = "";
   let genero = "";
 
   function handleSubmit(event) {
     event.preventDefault();
-    localStorage.setItem('tipo_usuario', tipo_usuario);
-    localStorage.setItem('genero', genero);
-    window.location.href = 'prueba'; // Redirigir a Prueba.svelte
+    // localStorage.setItem('tipo_usuario', tipo_usuario);
+    // localStorage.setItem('genero', genero);
+    updateForm({email,genero,tipo_usuario}) // se remplazo el genero e email con el store
+    navigate("/prueba") // Redirigir a Prueba.svelte
   }
 </script>
 

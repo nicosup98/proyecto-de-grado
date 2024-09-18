@@ -1,5 +1,6 @@
 <script>
     import '/fondo.css';
+    import { form } from "../stores/form"
     let bathroomVisits1 = '';
     let bathroomVisits2 = 0;
     let bathroomVisits3 = 0;

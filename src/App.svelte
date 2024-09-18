@@ -3,7 +3,7 @@
   import AdminHome from "./lib/AdminHome.svelte";
   import FormComponent from "./lib/Form.svelte";
   import Inicio from "./lib/Inicio.svelte";
-  import Formulario from "./lib/Formulario.svelte";
+  import Formulario from "./lib/formulario.svelte";
   import Personal from "./lib/Personal.svelte";
   import Respuestas from "./lib/Respuestas.svelte";
   import Admin from "./lib/Admin.svelte";

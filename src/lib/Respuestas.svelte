@@ -1,9 +1,15 @@
 <script>
     import '/fondo.css'; // Ajusta la ruta según la ubicación real del archivo fondo.css
+    import { form } from "../stores/form"
+    import { onMount } from "svelte"
 
     let waterConsumption = 0; // Variable para el consumo de agua
     let approximateValue = 0; // Variable para el valor aproximado
     let recommendation = ''; // Variable para la recomendación
+    //para debug
+    // onMount(()=>{
+    //     console.log($form)
+    // })
 </script>
 
 <style>
