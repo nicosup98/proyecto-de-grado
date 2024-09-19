@@ -25,13 +25,13 @@
 
 
 
-<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1 pt-16 overflow-hidden">
+<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1  overflow-hidden">
   <div class="text-left w-full md:w-1/3 p-6">
     <h1 class="text-4xl font-bold text-white">Título del Formulario</h1>
-    <p class="mt-4 text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
+    <p class="text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
   </div>
   <form on:submit={handleSubmit} class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
-    <div class="absolute inset-0 bg-white bg-opacity-90 rounded-lg overflow-y-auto max-h-full"></div>
+    <div class="absolute inset-0 bg-white bg-opacity-70 rounded-lg overflow-y-auto max-h-full"></div>
     <div class="relative z-10 w-full">
       <div class="relative w-full mb-4 text-center" style="top: 0px;">
         <h2 class="text-2xl font-bold text-black-100 inline-block">Formulario de Registro</h2>
