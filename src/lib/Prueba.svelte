@@ -138,8 +138,7 @@
             </p>
         </div>
         <form
-            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto"
-            on:submit={handleSubmit}
+        class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto mt-[-20px]"            on:submit={handleSubmit}
         >
             <div class="relative z-10 mb-4 text-center">
                 <h2
@@ -175,6 +174,10 @@
                                 >Centro de Mantenimiento</option
                             >
                         {/if}
+                        {#if tipo_usuario === "mantenimiento"}
+                        <option value="Vivero">Vivero</option>
+                    {/if}
+                    
                         <option value="Rectorado">Rectorado</option>
                         <option value="Cancha">Cancha</option>
                     </select>
