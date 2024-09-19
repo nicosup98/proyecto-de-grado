@@ -2,7 +2,7 @@
     import "/fondo.css";
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    import { form, updateForm } from "../stores/form";
+    import { form, sendForm, updateForm,form_results } from "../stores/form";
     let bloque_preferido = "";
     let cantidad_veces_urinario = 0;
     let cantidad_veces_inodoro = 0;
@@ -15,15 +15,14 @@
     let showModal = false;
     let additionalExpenses = [];
     let showAlert = false;
-    
-    let selectedExpenseOption = "";
 
-    $: genero = $form.genero
-    $: tipo_usuario = $form.tipo_usuario
+    let selectedExpenseOption = "";
+    let loader = false
+
+    $: genero = $form.genero;
+    $: tipo_usuario = $form.tipo_persona;
 
     onMount(() => {
-        console.log({genero,tipo_usuario})
-
         // Redirigir a Inicio.svelte si no se han establecido tipo_usuario o genero
         if (!tipo_usuario || !genero) {
             navigate("/inicio");
@@ -73,7 +72,7 @@
         }
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
         showAlert = true;
         updateForm({
@@ -84,13 +83,18 @@
             tiempo_bebedero,
             tiempo_lavamanos: bathroomVisits6,
             additionalExpenses,
-            genero,
-            tipo_usuario
-
         });
+        loader = true
+        const resp = await sendForm($form)
+        if(!resp.ok) {
+            alert('ocurrio un error al guardar el formulario')
+            return
+        }
+        form_results.set(await resp.json())
+        loader = false 
         setTimeout(() => {
             showAlert = false;
-
+            
             navigate("/respuestas");
         }, 500);
     }
@@ -138,7 +142,8 @@
             </p>
         </div>
         <form
-        class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto mt-[-20px]"            on:submit={handleSubmit}
+            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto mt-[-20px]"
+            on:submit={handleSubmit}
         >
             <div class="relative z-10 mb-4 text-center">
                 <h2
@@ -157,13 +162,13 @@
                         class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black"
                     >
                         <option value="">Selecciona una opción</option>
-                        <option value="Bloque A">Bloque A</option>
-                        <option value="Bloque B">Bloque B</option>
-                        <option value="Bloque C">Bloque C</option>
-                        <option value="Bloque D">Bloque D</option>
-                        <option value="Bloque E">Bloque E</option>
-                        <option value="Bloque F">Bloque F</option>
-                        <option value="Bloque G">Bloque G</option>
+                        <option value="A">Bloque A</option>
+                        <option value="B">Bloque B</option>
+                        <option value="C">Bloque C</option>
+                        <option value="D">Bloque D</option>
+                        <option value="E">Bloque E</option>
+                        <option value="F">Bloque F</option>
+                        <option value="G">Bloque G</option>
                         {#if tipo_usuario === "personal" || tipo_usuario === "mantenimiento"}
                             <option value="Feria de comida"
                                 >Feria de Comida</option
@@ -173,11 +178,9 @@
                             <option value="Centro de mantenimiento"
                                 >Centro de Mantenimiento</option
                             >
+                            <option value="Vivero">Vivero</option>
                         {/if}
-                        {#if tipo_usuario === "mantenimiento"}
-                        <option value="Vivero">Vivero</option>
-                    {/if}
-                    
+
                         <option value="Rectorado">Rectorado</option>
                         <option value="Cancha">Cancha</option>
                     </select>
@@ -451,11 +454,11 @@
                     class="p-2 border rounded w-full"
                 >
                     <option value="">Selecciona una opción</option>
-                    <option value="Urinario">Urinario</option>
-                    <option value="Inodoro">Inodoro</option>
-                    <option value="Ducha">Ducha</option>
-                    <option value="Bebedero">Bebedero</option>
-                    <option value="Lavamanos">Lavamanos</option>
+                    <option value="urinario_litro_jalada">Urinario</option>
+                    <option value="poceta_litro_jalada">Inodoro</option>
+                    <option value="regadera_litro_s">Ducha</option>
+                    <option value="bebedero_litro_s">Bebedero</option>
+                    <option value="lavamano_litro_s">Lavamanos</option>
                     <option value="Otro">Otro</option>
                 </select>
             </label>

@@ -10,7 +10,7 @@
     event.preventDefault();
     // localStorage.setItem('tipo_usuario', tipo_usuario);
     // localStorage.setItem('genero', genero);
-    updateForm({email,genero,tipo_usuario}) // se remplazo el genero e email con el store
+    updateForm({email,genero,tipo_persona:tipo_usuario}) // se remplazo el genero e email con el store
     navigate("/prueba") // Redirigir a Prueba.svelte
   }
 </script>

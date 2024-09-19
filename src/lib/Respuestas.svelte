@@ -1,11 +1,12 @@
 <script>
     import '/fondo.css'; // Ajusta la ruta según la ubicación real del archivo fondo.css
-    import { form } from "../stores/form"
+    import { form,form_results } from "../stores/form"
     import { onMount } from "svelte"
 
-    let waterConsumption = 0; // Variable para el consumo de agua
-    let approximateValue = 0; // Variable para el valor aproximado
     let recommendation = ''; // Variable para la recomendación
+
+    $: waterConsumption = $form_results.consumo_total.semanal
+    $: approximateValue = $form_results.consumo_total.mensual
     //para debug
     // onMount(()=>{
     //     console.log($form)
@@ -64,7 +65,7 @@
                 <hr class="border-t border-gray-300 my-4">
 
                 <div class="flex flex-col items-center">
-                    <p class="text-lg mb-2 text-white text-center">Lo cual tiene un aproximado de: {approximateValue} litros</p>
+                    <p class="text-lg mb-2 text-white text-center">Lo cual tiene un aproximado de: {approximateValue} litros al mes</p>
                 </div>
 
                 <hr class="border-t border-gray-300 my-4">
