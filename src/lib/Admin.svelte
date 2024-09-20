@@ -1,18 +1,4 @@
-<div class="ocean">
-  <div class="bubble bubble--1"></div>
-  <div class="bubble bubble--2"></div>
-  <div class="bubble bubble--3"></div>
-  <div class="bubble bubble--4"></div>
-  <div class="bubble bubble--5"></div>
-  <div class="bubble bubble--6"></div>
-  <div class="bubble bubble--7"></div>
-  <div class="bubble bubble--8"></div>
-  <div class="bubble bubble--9"></div>
-  <div class="bubble bubble--10"></div>
-  <div class="bubble bubble--11"></div>
-  <div class="bubble bubble--12"></div>
-</div>
-<link rel="stylesheet" href="fondo.css">
+
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <div class="flex justify-center items-center min-h-screen bg-cover bg-center" style="background-image: url('bg.jpg');">
