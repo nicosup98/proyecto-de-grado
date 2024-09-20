@@ -103,11 +103,11 @@
       <div>
         <span class="text-base">Promedio de Litros por Persona (Mensuales)</span
         >
-        <p class="text-xl text-blue-500 my-1">62 L</p>
+        <p class="text-xl text-cyan-300 my-1">62 L</p>
       </div>
       <div>
         <span class="text-base">Personas Registradas</span>
-        <p class="text-xl text-blue-500">12.128</p>
+        <p class="text-xl text-cyan-300">12.128</p>
       </div>
     </aside>
   </section>
