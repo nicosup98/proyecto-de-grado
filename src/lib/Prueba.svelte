@@ -2,7 +2,8 @@
     import "/fondo.css";
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    import { form, sendForm, updateForm,form_results } from "../stores/form";
+    import { form, updateForm,form_results } from "../stores/form";
+    import { sendForm } from '../services/Form'
     let bloque_preferido = "";
     let cantidad_veces_urinario = 0;
     let cantidad_veces_inodoro = 0;
