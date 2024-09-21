@@ -1,12 +1,35 @@
 <script>
     import '/fondo.css'; // Ajusta la ruta según la ubicación real del archivo fondo.css
-    import { form,form_results } from "../stores/form"
-    import { onMount } from "svelte"
+    import { form, form_results } from "../stores/form";
+    import { onMount } from "svelte";
+    import party from 'party-js';
 
     let recommendation = ''; // Variable para la recomendación
 
-    $: waterConsumption = $form_results.consumo_total.semanal
-    $: approximateValue = $form_results.consumo_total.mensual
+    $: waterConsumption = $form_results.consumo_total.semanal;
+    $: approximateValue = $form_results.consumo_total.mensual;
+
+    function lanzarConfeti() {
+        if (waterConsumption < 100) {
+            requestAnimationFrame(() => {
+                party.confetti(document.body, {
+                    count: party.variation.range(10, 20), // Reducir el número de partículas
+                });
+            });
+
+            
+        }
+    }
+
+    onMount(() => {
+        lanzarConfeti();
+    });
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        // Aquí puedes agregar la lógica para redirigir a otra página si es necesario
+    }
+
     //para debug
     // onMount(()=>{
     //     console.log($form)
@@ -19,7 +42,7 @@
             padding-bottom: 32px;
         }
     }
-  </style>
+</style>
 
 <div class="flex justify-center items-center h-screen relative z-1 pt-16 pb-16 responsive-padding">
     <div class="flex flex-col md:flex-row w-full md:w-2/3 max-w-4xl">
@@ -28,7 +51,7 @@
             <p class="text-lg text-white text-left ml-0 mb-8">Esta es una breve descripción del formulario. Por favor, completa la información requerida en el formulario a la derecha.</p>
         </div>
         <div class="w-full md:w-1/2">
-            <form class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full" style="max-height: 65rem; overflow-y: auto;">
+            <form on:submit={handleSubmit} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full" style="max-height: 65rem; overflow-y: auto;">
                 <div class="relative z-10 mb-4 text-center">
                     <h2 class="text-2xl font-bold text-black-100">Respuestas</h2>
                     <h2 class="text-2xl font-bold text-blue-600 animate-clip" style="position: relative; top: -33px;">Respuestas</h2>
@@ -63,4 +86,3 @@
         </div>
     </div>
 </div>
-
