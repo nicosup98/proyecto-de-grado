@@ -95,7 +95,7 @@
       <button
         type="submit"
         class="flex justify-center bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full"
-        disabled={loading}
+        disabled={loading || !email || !tipo_usuario || !genero}
         >Continuar
         {#if loading}
           <span class="loading loading-ring loading-md"></span>
