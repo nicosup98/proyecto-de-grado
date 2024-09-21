@@ -23,38 +23,15 @@
   }
 </style>
 
-<div class="ocean">
-  <div class="bubble bubble--1"></div>
-  <div class="bubble bubble--2"></div>
-  <div class="bubble bubble--3"></div>
-  <div class="bubble bubble--4"></div>
-  <div class="bubble bubble--5"></div>
-  <div class="bubble bubble--6"></div>
-  <div class="bubble bubble--7"></div>
-  <div class="bubble bubble--8"></div>
-  <div class="bubble bubble--9"></div>
-  <div class="bubble bubble--10"></div>
-  <div class="bubble bubble--11"></div>
-  <div class="bubble bubble--12"></div>
-</div>
-<link rel="stylesheet" href="fondo.css">
 
-<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-60 text-white p-2 flex justify-between items-center z-10">
-  <div class="flex items-center">
-    <img src="urbe_logo.png" class="w-16 zoom-img mr-2" alt="URBE Logo" />
-  </div>
-  <div class="flex items-center">
-    <img src="sustentable_logo.png" class="w-16 zoom-img ml-6" alt="Huella logo" />
-  </div>
-</nav>
 
-<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1 pt-16 overflow-hidden">
+<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1  overflow-hidden">
   <div class="text-left w-full md:w-1/3 p-6">
     <h1 class="text-4xl font-bold text-white">Título del Formulario</h1>
-    <p class="mt-4 text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
+    <p class="text-lg text-white">Aquí puedes agregar una descripción o cualquier otro texto relevante.</p>
   </div>
-  <form on:submit={handleSubmit} class="bg-white bg-opacity-80 p-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
-    <div class="absolute inset-0 bg-white bg-opacity-90 rounded-lg overflow-y-auto max-h-full"></div>
+  <form on:submit={handleSubmit} class="bg-white bg-opacity-80 p-10 z-10 rounded-lg flex flex-col items-center m-auto w-full md:w-1/3 relative bg-cover bg-center bg-no-repeat max-h-full overflow-y-auto" style="background-image: url('/fachada-completa.jpg');">
+    <div class="absolute inset-0 bg-white bg-opacity-70 rounded-lg overflow-y-auto max-h-full"></div>
     <div class="relative z-10 w-full">
       <div class="relative w-full mb-4 text-center" style="top: 0px;">
         <h2 class="text-2xl font-bold text-black-100 inline-block">Formulario de Registro</h2>
@@ -83,8 +60,3 @@
     </div>
   </form>
 </div>
-
-<footer class="bg-gray-800 text-white p-4 text-center w-full fixed bottom-0 left-0">
-  <p>Universidad Privada Dr. Rafael Belloso Chacín.</p>
-  <p>©2024 Powered by Servieduca All rights reserved</p>
-</footer>

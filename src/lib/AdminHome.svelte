@@ -71,7 +71,7 @@
 
 <div>
   <div class="flex justify-between">
-    <div class="drawer">
+    <div class="drawer z-20">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <!-- Page content here -->
@@ -93,8 +93,7 @@
         </ul>
       </div>
     </div>
-    <img src="urbe_logo.png" class="w-16 zoom-img" alt="" />
-    <img src="public\logo_huella.png" class="w-16 zoom-img" alt="" />
+    <!-- <img src="urbe_logo.png" class="w-16 zoom-img" alt="" /> -->
   </div>
   <section class="flex justify-around my-3">
     <BlueBox title="Personas" body="12.128" />
@@ -104,11 +103,11 @@
       <div>
         <span class="text-base">Promedio de Litros por Persona (Mensuales)</span
         >
-        <p class="text-xl text-blue-500 my-1">62 L</p>
+        <p class="text-xl text-cyan-300 my-1">62 L</p>
       </div>
       <div>
         <span class="text-base">Personas Registradas</span>
-        <p class="text-xl text-blue-500">12.128</p>
+        <p class="text-xl text-cyan-300">12.128</p>
       </div>
     </aside>
   </section>
@@ -128,7 +127,7 @@
     </div>
   </section>
 </div>
-<section>
+<!-- <section>
   <div class="stats shadow custom-position">
     <div class="stat place-items-center">
       <div class="stat-title">Downloads</div>
@@ -148,5 +147,5 @@
       <div class="stat-desc">↘︎ 90 (14%)</div>
     </div>
   </div>
-</section>
+</section> -->
 
