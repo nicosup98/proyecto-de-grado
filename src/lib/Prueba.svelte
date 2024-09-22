@@ -29,9 +29,8 @@
             navigate("/inicio");
         }
     });
-
     function increment(value, step = 1) {
-        return value + step;
+        return value + step <= 99 ? value + step : 99;
     }
 
     function decrement(value, step = 1) {
