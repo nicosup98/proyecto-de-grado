@@ -71,7 +71,7 @@
       <h2 class="text-2xl font-bold text-black-100 inline-block">Formulario de Registro</h2>
     </div>
     <label for="tipo_usuario" class="text-lg mb-2">Tipo de usuario:</label>
-    <select id="tipo_usuario" bind:value={tipo_usuario} class="mb-4 p-2 w-full text-lg">
+    <select id="tipo_usuario" bind:value={tipo_usuario} required class="mb-4 p-2 w-full text-lg">
       <option value="">Selecciona una opción</option>
       <option value="profesor">Profesor</option>
       <option value="estudiante">Estudiante</option>
@@ -81,7 +81,7 @@
     </select>
 
     <label for="genero" class="text-lg mb-2">Género:</label>
-    <select id="genero" bind:value={genero} class="mb-4 p-2 w-full text-lg">
+    <select id="genero" bind:value={genero}  required class="mb-4 p-2 w-full text-lg">
       <option value="">Selecciona una opción</option>
       <option value="masculino">Masculino</option>
       <option value="femenino">Femenino</option>

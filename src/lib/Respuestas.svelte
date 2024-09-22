@@ -16,13 +16,22 @@
                     count: party.variation.range(10, 20), // Reducir el número de partículas
                 });
             });
-
-            
         }
     }
 
+    function actualizarRecomendacion() {
+        if (waterConsumption > 100) {
+            recommendation = 'Te recomendamos que ahorres agua. Intenta reducir tu consumo de agua para ayudar al medio ambiente.';
+        } else {
+            recommendation = 'Tu consumo de agua está bien. Sigue así.';
+        }
+    }
+
+    $: actualizarRecomendacion();
+
     onMount(() => {
         lanzarConfeti();
+        actualizarRecomendacion();
     });
 
     function handleSubmit(event) {
@@ -53,8 +62,7 @@
         <div class="w-full md:w-1/2">
             <form on:submit={handleSubmit} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full" style="max-height: 65rem; overflow-y: auto;">
                 <div class="relative z-10 mb-4 text-center">
-                    <h2 class="text-2xl font-bold text-black-100">Respuestas</h2>
-                    <h2 class="text-2xl font-bold text-blue-600 animate-clip" style="position: relative; top: -33px;">Respuestas</h2>
+                    <h2 class="text-2xl font-bold text-white">Respuestas</h2>
                 </div>
 
                 <div class="flex flex-col items-center">
