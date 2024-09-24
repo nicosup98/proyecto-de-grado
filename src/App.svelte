@@ -6,10 +6,11 @@
   import Admin from "./lib/Admin.svelte";
   import Prueba from "./lib/Prueba.svelte";
   import Layout from "./Layout.svelte";
+  import { fade } from 'svelte/transition'
   export let url = "";
 </script>
 
-<Router {url}>
+<Router {url}  viewtransition="{() => ({ fn: fade, duration: 250 })}">
 
 <Layout>
   <div class="container mx-auto m-3">

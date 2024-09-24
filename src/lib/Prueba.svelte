@@ -2,8 +2,9 @@
     import "/fondo.css";
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    import { form, updateForm,form_results } from "../stores/form";
-    import { sendForm } from '../services/Form'
+    import { form, updateForm, form_results } from "../stores/form";
+    import { sendForm } from "../services/Form";
+    import Decimal from "decimal.js";
     let bloque_preferido = "";
     let cantidad_veces_urinario = 0;
     let cantidad_veces_inodoro = 0;
@@ -18,7 +19,7 @@
     let showAlert = false;
 
     let selectedExpenseOption = "";
-    let loader = false
+    let loader = false;
 
     $: genero = $form.genero;
     $: tipo_usuario = $form.tipo_persona;
@@ -26,15 +27,20 @@
     onMount(() => {
         // Redirigir a Inicio.svelte si no se han establecido tipo_usuario o genero
         if (!tipo_usuario || !genero) {
-            navigate("/inicio");
+            navigate("/");
         }
     });
     function increment(value, step = 1) {
-        return value + step <= 99 ? value + step : 99;
+        return Decimal.add(value, step).lessThanOrEqualTo(99)
+            ? Decimal.add(value, step).toNumber()
+            : 99;
     }
 
     function decrement(value, step = 1) {
-        return value > 0 ? value - step : 0;
+        const newValue = new Decimal(value);
+        return newValue.greaterThan(0)
+            ? newValue.minus(step).toNumber()
+            : new Decimal(0).toNumber();
     }
 
     function addExpense() {
@@ -74,8 +80,7 @@
 
     async function handleSubmit(event) {
         event.preventDefault();
-        showAlert = true;
-        updateForm({
+        const newForm = {
             bloque_preferido,
             cantidad_veces_inodoro,
             cantidad_veces_urinario,
@@ -83,23 +88,29 @@
             tiempo_bebedero,
             tiempo_lavamanos: bathroomVisits6,
             additionalExpenses,
-        });
-        loader = true
-        const resp = await sendForm($form)
-        if(!resp.ok) {
-            alert('ocurrio un error al guardar el formulario')
-            return
+        };
+
+        if(newForm.bloque_preferido === ""){
+            alert("Por favor, seleccione un bloque preferido.");
+            return;
         }
-        form_results.set(await resp.json())
-        loader = false 
+        showAlert = true;
+        updateForm(newForm);
+        loader = true;
+        const resp = await sendForm($form);
+        if (!resp.ok) {
+            alert("ocurrio un error al guardar el formulario");
+            return;
+        }
+        form_results.set(await resp.json());
+        loader = false;
         setTimeout(() => {
             showAlert = false;
-            
+
             navigate("/respuestas");
         }, 500);
     }
 </script>
-
 
 <div class="flex justify-center items-center min-h-screen pt-24 pb-24">
     <div class="flex flex-col md:flex-row w-full md:w-2/3">
@@ -394,9 +405,14 @@
             <div class="flex justify-center">
                 <button
                     type="submit"
-                    class="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full"
-                    >Continuar</button
+                    disabled={loader}
+                    class="flex justify-center gap-2 bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full"
                 >
+                    Continuar
+                    {#if loader}
+                        <span class="loading loading-spinner"></span>
+                    {/if}
+                </button>
             </div>
         </form>
     </div>
@@ -469,5 +485,3 @@
         </div>
     </div>
 {/if}
-
-
