@@ -73,10 +73,10 @@
     <label for="tipo_usuario" class="text-lg mb-2">Tipo de usuario:</label>
     <select id="tipo_usuario" bind:value={tipo_usuario} required class="mb-4 p-2 w-full text-lg">
       <option value="">Selecciona una opción</option>
-      <option value="profesor">Profesor</option>
       <option value="estudiante">Estudiante</option>
-      <option value="visitante">Visitante</option>
+      <option value="profesor">Profesor</option>
       <option value="personal">Personal</option>
+      <option value="visitante">Visitante</option>
       <option value="mantenimiento">Personal de Mantenimiento</option>
     </select>
 
