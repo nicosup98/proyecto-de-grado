@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-screen flex flex-col">
     <div class="ocean">
         <div class="bubble bubble--1"></div>
         <div class="bubble bubble--2"></div>
@@ -25,10 +25,14 @@
             <img src="/sustentable_logo.png" class="w-16 zoom-img ml-2" alt="Huella logo" />
             </a>
         </div>
-        </nav>
-    <slot/>
-    <footer class="bg-gray-800 text-white p-4 text-center w-full  bottom-0 left-0">
+    </nav>
+    
+    <div class="flex-grow">
+        <slot/>
+    </div>
+    
+    <footer class="bg-gray-800 text-white p-4 text-center w-full">
         <p>Universidad Privada Dr. Rafael Belloso Chacín.</p>
         <p>©2024 Powered by Servieduca All rights reserved</p>
-      </footer>
+    </footer>
 </div>
