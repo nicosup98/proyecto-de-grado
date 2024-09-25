@@ -85,7 +85,7 @@
       <option value="">Selecciona una opción</option>
       <option value="masculino">Masculino</option>
       <option value="femenino">Femenino</option>
-      <option value="Otros">Otro</option>
+      <option value="Otro">Otro</option>
     </select>
 
     <label for="email" class="text-lg mb-2">Ingrese su correo electrónico:</label>
