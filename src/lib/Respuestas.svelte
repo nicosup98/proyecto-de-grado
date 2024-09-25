@@ -45,13 +45,34 @@
     }
 </script>
 
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    .fade-in {
+        animation: fadeIn 0.6s;
+    }
+
+    .fade-in-after {
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+        animation-delay: 0.6s;
+    }
+</style>
+
 <div class="flex justify-center items-center h-screen z-1">
     <div class="flex flex-col md:flex-row w-full md:w-2/3 max-w-4xl">
-        <div class="w-full p-4 md:w-1/2">
+        <div class="w-full p-4 md:w-1/2 fade-in">
             <h1 class="text-3xl font-bold text-white mb-4 text-left mt-8 ml-0">Título del Formulario</h1>
             <p class="text-lg text-white text-left ml-0 mb-8">Esta es una breve descripción del formulario. Por favor, completa la información requerida en el formulario a la derecha.</p>
         </div>
-        <div class="w-full md:w-1/2">
+        <div class="w-full md:w-1/2 fade-in-after">
             <form on:submit={handleSubmit} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full max-h-[65vh] overflow-y-auto">
                 <div class="relative z-10 mb-4 text-center">
                     <h2 class="text-2xl font-bold text-white">Respuestas</h2>
@@ -70,33 +91,33 @@
                 <hr class="border-t border-gray-300 my-4">
 
                 {#if litrosLavamanos * 4.34524 > 50}
-                <div class="flex flex-col items-center bg-warning rounded">
-                    <p class="text-lg mb-2 text-gray-600 text-center">Vimos que tu consumo de agua en el lavamanos fue de {litrosLavamanos} litros</p>
-                    <p class="text-lg mb-2 text-gray-600 text-center">Te recomendamos que reduzcas el uso del lavamanos para ahorrar agua.</p>
+                <div class="flex flex-col items-center p-2">
+                    <p class="text-lg mb-2 text-warning text-center">Vimos que tu consumo de agua en el lavamanos fue de {litrosLavamanos} litros</p>
+                    <p class="text-lg mb-2 text-warning text-center">Te recomendamos que reduzcas el uso del lavamanos para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
                 {#if litrosUrinarios * 4.34524 > 50}
-                <div class="flex flex-col items-center bg-warning rounded p-2">
-                    <p class="text-lg mb-2 text-gray-600 text-center">Vimos que tu  consumo de agua en los urinarios: {litrosUrinarios} litros</p>
-                    <p class="text-lg mb-2 text-gray-600 text-center">Te recomendamos que reduzcas el uso de los urinarios para ahorrar agua.</p>
+                <div class="flex flex-col items-center p-2">
+                    <p class="text-lg mb-2 text-warning text-center">Vimos que tu  consumo de agua en los urinarios: {litrosUrinarios} litros</p>
+                    <p class="text-lg mb-2 text-warning text-center">Te recomendamos que reduzcas el uso de los urinarios para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
                 {#if litrosInodoro * 4.34524 > 50}
-                <div class="flex flex-col items-center bg-warning rounded p-2">
-                    <p class="text-lg mb-2 text-gray-600 text-center">Vimos que tu consumo de agua en el inodoro: {litrosInodoro} litros</p>
-                    <p class="text-lg mb-2 text-gray-600 text-center">Te recomendamos que reduzcas el uso del inodoro para ahorrar agua.</p>
+                <div class="flex flex-col items-center p-2">
+                    <p class="text-lg mb-2 text-warning text-center">Vimos que tu consumo de agua en el inodoro: {litrosInodoro} litros</p>
+                    <p class="text-lg mb-2 text-warning text-center">Te recomendamos que reduzcas el uso del inodoro para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
                 {#if litrosBebedero * 4.34524 > 50}
-                <div class="flex flex-col items-center bg-warning rounded p-2">
-                    <p class="text-lg mb-2 text-gray-600 text-center">Consumo de agua en bebedero: {litrosBebedero} litros</p>
-                    <p class="text-lg mb-2 text-gray-600 text-center">Te recomendamos que reduzcas el uso del bebedero para ahorrar agua.</p>
+                <div class="flex flex-col items-center p-2">
+                    <p class="text-lg mb-2 text-warning text-center">Consumo de agua en bebedero: {litrosBebedero} litros</p>
+                    <p class="text-lg mb-2 text-warning text-center">Te recomendamos que reduzcas el uso del bebedero para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}

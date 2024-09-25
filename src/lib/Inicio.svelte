@@ -14,7 +14,6 @@
       loader = true
       const respuestas = await validarEmail(email)
       const data = await respuestas.json()
-      console.log(data)
       if(respuestas.status === 200){
         const [res] = data
         form_results.set({
@@ -81,7 +80,7 @@
 }
 </style>
 
-<div class="flex flex-col md:flex-row justify-between items-center pt-5 pb-4 z-1 ">
+<div class="flex flex-col md:flex-row justify-between items-center z-1 ">
 <div class="text-center w-full md:w-1/3 p-6">
     <section class="flex items-center justify-center">
       <div class="relative">
