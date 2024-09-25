@@ -14,10 +14,10 @@
         <div class="bubble bubble--12"></div>
     </div>
     
-    <nav class="sticky top-0 left-0 w-full bg-white bg-opacity-60 text-white p-2 flex justify-between items-center z-20">
+    <nav class="sticky top-0 left-0 w-full bg-white bg-opacity-60 text-white p-2 flex justify-between items-center z-20 overflow-hidden">
         <div class="flex items-center">
             <a href="https://www.urbe.edu" target="_blank">
-            <img src="/urbe_logo.png" class="w-52 zoom-img mr-2" alt="URBE Logo" />
+            <img src="/urbe_logo.png" class="w-44 zoom-img mr-2" alt="URBE Logo" />
             </a>
         </div>
         <div class="flex items-center">

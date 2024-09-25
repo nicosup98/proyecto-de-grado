@@ -90,7 +90,7 @@
             additionalExpenses,
         };
 
-        if(newForm.bloque_preferido === ""){
+        if (newForm.bloque_preferido === "") {
             alert("Por favor, seleccione un bloque preferido.");
             return;
         }
@@ -112,10 +112,12 @@
     }
 </script>
 
-<div class="flex justify-center items-center min-h-screen pt-12 pb-24">
-    <div class="flex flex-col md:flex-row w-full md:w-2/3">
+<div class="flex justify-center items-center  py-4">
+    <div class="flex justify-around flex-col md:flex-row w-full md:w-3/4">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center relative top-[-40px]">
+            <h1
+                class="text-3xl md:text-4xl font-bold mb-4 text-center relative top-[-40px]"
+            >
                 Registro de Consumo de Agua dentro de URBE
             </h1>
             <p class="text-lg text-center relative top-[-22px]">
@@ -123,10 +125,9 @@
                 Los datos deben ser un promedio semanal.
             </p>
         </div>
-   
 
         <form
-            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto mt-[-20px]"
+            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[550px] overflow-y-auto "
             on:submit={handleSubmit}
         >
             <div class="relative z-10 mb-4 text-center">
@@ -445,12 +446,8 @@
                     bind:value={selectedExpenseOption}
                     class="p-2 border rounded w-full"
                 >
-                    <option value="">Selecciona una opción</option>
-                    <option value="urinario_litro_jalada">Urinario</option>
-                    <option value="poceta_litro_jalada">Inodoro</option>
-                    <option value="regadera_litro_s">Ducha</option>
-                    <option value="bebedero_litro_s">Bebedero</option>
-                    <option value="lavamano_litro_s">Lavamanos</option>
+                    <option value="botellon">Botellon</option>
+
                     <option value="Otro">Otro</option>
                 </select>
             </label>
@@ -466,7 +463,7 @@
                 </label>
             {/if}
             <label class="block mb-4">
-                Gasto de agua en litros por semana:
+                botellones por semana:
                 <input
                     type="number"
                     bind:value={newExpenseValue}

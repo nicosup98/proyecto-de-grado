@@ -13,7 +13,7 @@
 <Router {url}  viewtransition="{() => ({ fn: fade, duration: 250 })}">
 
 <Layout>
-  <div class="container mx-auto m-3">
+  <div class="container mx-auto m-3 h-full">
     <Route path="/admin" component={AdminHome} />
     <Route path="/" component={Inicio}/>
     <Route path="/loginAdmin" component={Admin}/>

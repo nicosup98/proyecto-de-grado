@@ -6,7 +6,7 @@ export function sendForm(form_data) {
     )
 }
 
-export function validateEmail(email){
+export function validarEmail(email){
     return fetch(`${back_url}/resultados/email`,{
         method: "POST",
         body: email,

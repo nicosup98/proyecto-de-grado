@@ -1,15 +1,42 @@
 <script>
   import { navigate } from "svelte-routing";
-  import { updateForm } from "../stores/form";
+  import { updateForm,form_results } from "../stores/form";
+    import { validarEmail } from "../services/Form";
 
   let email = "";
   let tipo_usuario = "";
   let genero = "";
+  let loader = false
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
       event.preventDefault();
       updateForm({ email, genero, tipo_persona: tipo_usuario }); // se remplazo el genero e email con el store
-      navigate("/formulario"); // Redirigir a Prueba.svelte
+      loader = true
+      const respuestas = await validarEmail(email)
+      const data = await respuestas.json()
+      console.log(data)
+      if(respuestas.status === 200){
+        const [res] = data
+        form_results.set({
+          consumo_total: {
+            semanal: res.gasto_agua_semanal,
+            mensual: res.gasto_agua
+          },
+          consumo_detalles: {
+            litros_lavamanos: res.litros_lavamanos,
+            litros_urinarios: res.litros_urinarios,
+            litros_inodoro: res.litros_inodoro,
+            litros_bebedero: res.litros_bebedero,
+            litros_puntos_rojos: res.litros_puntos_rojos
+          }
+        })
+        navigate('/respuestas')
+      } else if(respuestas.status === 404){
+        navigate("/formulario"); // Redirigir a Prueba.svelte
+      } else {
+        alert(data.error)
+      }
+      loader = false
   }
 </script>
 <!--
@@ -54,7 +81,7 @@
 }
 </style>
 
-<div class="flex flex-col md:flex-row justify-between items-center h-[calc(100vh-80px)] relative z-1 pt-16 overflow-hidden">
+<div class="flex flex-col md:flex-row justify-between items-center pt-5 pb-4 z-1 ">
 <div class="text-center w-full md:w-1/3 p-6">
     <section class="flex items-center justify-center">
       <div class="relative">
@@ -90,7 +117,12 @@
 
     <label for="email" class="text-lg mb-2">Ingrese su correo electrónico:</label>
     <input type="email" id="email" bind:value={email} required class="mb-4 p-2 w-full text-lg">
-    <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full">Continuar</button>
+    <button type="submit" disabled={loader} class=" flex justify-center gap-2 bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors duration-300 w-full">
+      Continuar
+      {#if loader}
+      <span class="loading loading-spinner loading-md"></span>
+      {/if}
+    </button>
   </div>
 </form>
 </div>
