@@ -131,7 +131,7 @@
         >
             <div class="relative z-10 mb-4 text-center">
                 <h2
-                    class="text-2xl font-bold text-white animate-clip"
+                    class="text-2xl font-bold text-white animate-clip mt-6"
                     style="position: relative; top: -33px;"
                 >
                     Formulario de Registro
@@ -165,6 +165,7 @@
                                 >Centro de Mantenimiento</option
                             >
                             <option value="Vivero">Vivero</option>
+                            <option value="Otro">Otro</option>
                         {/if}
 
                         <option value="Rectorado">Rectorado</option>
