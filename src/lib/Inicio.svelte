@@ -60,7 +60,7 @@
       <div class="relative">
         <h2 class="absolute text-4xl md:text-5xl font-bold text-white left-1/2 transform -translate-x-1/2 -translate-y-1/2 stroke-2 stroke-current text-white whitespace-nowrap">Huella Hídrica</h2>
         <h2 class="absolute text-4xl md:text-5xl font-bold text-blue-500 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-clip whitespace-nowrap">Huella Hídrica</h2>
-      <p class="text-center text-2xl mt-12 text-white">Una plataforma innovadora para la gestión educativa.</p>
+      <p class="text-center text-2xl mt-12 text-white">¡Descubre tu huella hídrica y sé parte del cambio!</p>
     </div>
    </section>
 </div>
@@ -85,7 +85,7 @@
       <option value="">Selecciona una opción</option>
       <option value="masculino">Masculino</option>
       <option value="femenino">Femenino</option>
-      <option value="Otro">Otro</option>
+      <option value="Otros">Otro</option>
     </select>
 
     <label for="email" class="text-lg mb-2">Ingrese su correo electrónico:</label>

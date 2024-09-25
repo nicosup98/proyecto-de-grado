@@ -161,6 +161,7 @@
                                 >Centro de Mantenimiento</option
                             >
                             <option value="Vivero">Vivero</option>
+                            <option value="Otro">Otro</option>
                         {/if}
 
                         <option value="Rectorado">Rectorado</option>
