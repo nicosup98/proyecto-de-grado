@@ -112,17 +112,19 @@
     }
 </script>
 
-<div class="flex justify-center items-center min-h-screen pt-24 pb-24">
+<div class="flex justify-center items-center min-h-screen pt-12 pb-24">
     <div class="flex flex-col md:flex-row w-full md:w-2/3">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center relative top-[-40px]">
                 Registro de Consumo de Agua dentro de URBE
             </h1>
-            <p class="text-lg">
+            <p class="text-lg text-center relative top-[-22px]">
                 Por favor, registre su consumo de agua dentro de la universidad.
                 Los datos deben ser un promedio semanal.
             </p>
         </div>
+   
+
         <form
             class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[600px] overflow-y-auto mt-[-20px]"
             on:submit={handleSubmit}
@@ -142,6 +144,7 @@
                     <select
                         bind:value={bloque_preferido}
                         class="mb-4 p-2 w-full text-lg rounded-lg text-center relative text-black"
+                        required
                     >
                         <option value="">Selecciona una opción</option>
                         <option value="A">Bloque A</option>
@@ -151,6 +154,7 @@
                         <option value="E">Bloque E</option>
                         <option value="F">Bloque F</option>
                         <option value="G">Bloque G</option>
+                        <option value="Biblioteca">Biblioteca</option>
                         {#if tipo_usuario === "personal" || tipo_usuario === "mantenimiento"}
                             <option value="Feria de comida"
                                 >Feria de Comida</option
