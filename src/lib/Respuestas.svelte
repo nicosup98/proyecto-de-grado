@@ -55,13 +55,25 @@
             opacity: 1;
         }
     }
+
+    @keyframes fadeIn-translate {
+        from {
+            transform: translateY(75px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
     .fade-in {
         animation: fadeIn 0.6s;
     }
 
     .fade-in-after {
         opacity: 0;
-        animation: fadeIn 0.6s forwards;
+        animation: fadeIn-translate 0.6s forwards;
         animation-delay: 0.6s;
     }
 </style>
