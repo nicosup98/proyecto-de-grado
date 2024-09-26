@@ -58,24 +58,21 @@
         ) {
             additionalExpenses = [
                 ...additionalExpenses,
-                { name: newExpenseName, value: newExpenseValue },
+                { name: newExpenseName, value: newExpenseValue, option:selectedExpenseOption },
             ];
-            newExpenseName = "";
-            newExpenseValue = 0;
-            selectedExpenseOption = "";
-            showModal = false;
         } else if (selectedExpenseOption !== "Otro" && selectedExpenseOption) {
             additionalExpenses = [
                 ...additionalExpenses,
-                { name: selectedExpenseOption, value: newExpenseValue },
+                { name: selectedExpenseOption, value: newExpenseValue, option:selectedExpenseOption },
             ];
-            newExpenseName = "";
-            newExpenseValue = 0;
-            selectedExpenseOption = "";
-            showModal = false;
+            
         } else {
             alert("Por favor, complete todos los campos.");
         }
+        newExpenseName = "";
+        newExpenseValue = 0;
+        selectedExpenseOption = "";
+        showModal = false;
     }
 
     async function handleSubmit(event) {
@@ -87,7 +84,7 @@
             tiempo_ducha: bathroomVisits4,
             tiempo_bebedero,
             tiempo_lavamanos: bathroomVisits6,
-            additionalExpenses,
+            punto_rojo:additionalExpenses,
         };
 
         if (newForm.bloque_preferido === "") {
@@ -463,7 +460,7 @@
                 </label>
             {/if}
             <label class="block mb-4">
-                botellones por semana:
+                {newExpenseName == "botellon" ? "botellones" : "litros"} por semana:
                 <input
                     type="number"
                     bind:value={newExpenseValue}
