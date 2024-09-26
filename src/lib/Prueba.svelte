@@ -58,14 +58,21 @@
         ) {
             additionalExpenses = [
                 ...additionalExpenses,
-                { name: newExpenseName, value: newExpenseValue, option:selectedExpenseOption },
+                {
+                    name: newExpenseName,
+                    value: newExpenseValue,
+                    option: selectedExpenseOption,
+                },
             ];
         } else if (selectedExpenseOption !== "Otro" && selectedExpenseOption) {
             additionalExpenses = [
                 ...additionalExpenses,
-                { name: selectedExpenseOption, value: newExpenseValue, option:selectedExpenseOption },
+                {
+                    name: selectedExpenseOption,
+                    value: newExpenseValue,
+                    option: selectedExpenseOption,
+                },
             ];
-            
         } else {
             alert("Por favor, complete todos los campos.");
         }
@@ -84,7 +91,7 @@
             tiempo_ducha: bathroomVisits4,
             tiempo_bebedero,
             tiempo_lavamanos: bathroomVisits6,
-            punto_rojo:additionalExpenses,
+            punto_rojo: additionalExpenses,
         };
 
         if (newForm.bloque_preferido === "") {
@@ -109,7 +116,7 @@
     }
 </script>
 
-<div class="flex justify-center items-center  py-4">
+<div class="flex justify-center items-center py-4">
     <div class="flex justify-around flex-col md:flex-row w-full md:w-3/4">
         <div class="md:w-1/2 p-10 text-white md:mr-10">
             <h1
@@ -124,7 +131,7 @@
         </div>
 
         <form
-            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[550px] overflow-y-auto "
+            class="backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-30 p-10 rounded-3xl w-full md:w-3/5 max-h-[550px] overflow-y-auto"
             on:submit={handleSubmit}
         >
             <div class="relative z-10 mb-4 text-center">
@@ -287,8 +294,8 @@
 
             <div class="flex flex-col items-center">
                 <label class="text-lg mb-2 text-white text-center"
-                    >¿Cuántos litros de agua crees que consumes en promedio a la
-                    semana usando el bebedero?
+                    >¿Cuánto segundos crees que usas el bebedero en promedio a la
+                    semana?
                     <img
                         src="icono_bebedero.png"
                         alt="Toilet Icon"
@@ -299,10 +306,8 @@
                             type="button"
                             class="px-5 py-2 bg-transparent rounded text-6xl text-white"
                             on:click={() =>
-                                (tiempo_bebedero = decrement(
-                                    tiempo_bebedero,
-                                    0.1,
-                                ))}>-</button
+                                (tiempo_bebedero = decrement(tiempo_bebedero))}
+                            >-</button
                         >
                         <input
                             type="number"
@@ -314,10 +319,8 @@
                             type="button"
                             class="px-5 py-2 bg-transparent rounded text-6xl text-white"
                             on:click={() =>
-                                (tiempo_bebedero = increment(
-                                    tiempo_bebedero,
-                                    0.1,
-                                ))}>+</button
+                                (tiempo_bebedero = increment(tiempo_bebedero))}
+                            >+</button
                         >
                     </div>
                 </label>
