@@ -70,7 +70,7 @@
     <div class="flex flex-col md:flex-row w-full md:w-2/3 max-w-4xl">
         <div class="w-full p-4 md:w-1/2 fade-in">
             <h1 class="text-3xl font-bold text-white mb-4 text-center mt-8 ml-0">¡Gracias por tu participación!</h1>
-            <p class="text-lg text-white text-left ml-0 mb-8">Tu colaboración es fundamental para entender y reducir la huella hídrica. Con tus respuestas, ayudaremos a generar estrategias para un uso más eficiente del agua dentro de la univesidad. </p>
+            <p class="text-lg text-white text-center mb-8">Con tus respuestas, ayudaremos a generar estrategias para un uso más eficiente del agua dentro de la universidad.</p>
         </div>
         <div class="w-full md:w-1/2 fade-in-after">
             <form on:submit={handleSubmit} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full max-h-[65vh] overflow-y-auto">
