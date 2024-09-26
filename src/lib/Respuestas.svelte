@@ -69,7 +69,7 @@
 <div class="flex justify-center items-center h-screen z-1">
     <div class="flex flex-col md:flex-row w-full md:w-2/3 max-w-4xl">
         <div class="w-full p-4 md:w-1/2 fade-in">
-            <h1 class="text-3xl font-bold text-white mb-4 text-left mt-8 ml-0">¡Gracias por tu participación!</h1>
+            <h1 class="text-3xl font-bold text-white mb-4 text-center mt-8 ml-0">¡Gracias por tu participación!</h1>
             <p class="text-lg text-white text-left ml-0 mb-8">Tu colaboración es fundamental para entender y reducir la huella hídrica. Con tus respuestas, ayudaremos a generar estrategias para un uso más eficiente del agua dentro de la univesidad. </p>
         </div>
         <div class="w-full md:w-1/2 fade-in-after">
