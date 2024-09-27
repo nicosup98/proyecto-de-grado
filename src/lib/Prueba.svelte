@@ -5,6 +5,7 @@
     import { form, updateForm, form_results } from "../stores/form";
     import { sendForm } from "../services/Form";
     import Decimal from "decimal.js";
+    import PopUpInfo from "./PopUpInfo.svelte";
     let bloque_preferido = "";
     let cantidad_veces_urinario = 0;
     let cantidad_veces_inodoro = 0;
@@ -20,6 +21,7 @@
 
     let selectedExpenseOption = "";
     let loader = false;
+    let alert
 
     $: genero = $form.genero;
     $: tipo_usuario = $form.tipo_persona;
@@ -30,6 +32,15 @@
             navigate("/");
         }
     });
+
+    function displayAlert(alertConfig){
+        const {duration} = alertConfig
+        alert = alertConfig
+        showAlert = true
+        setTimeout(()=>{
+            showAlert = false
+        },duration || 500)
+    }
     function increment(value, step = 1) {
         return Decimal.add(value, step).lessThanOrEqualTo(99)
             ? Decimal.add(value, step).toNumber()
@@ -45,9 +56,7 @@
 
     function addExpense() {
         if (newExpenseValue < 0) {
-            alert(
-                "El gasto de agua en litros por semana no puede ser negativo.",
-            );
+            displayAlert({msg:"El gasto de agua en litros por semana no puede ser negativo.",type:'alert-warning'})
             return;
         }
 
@@ -95,22 +104,20 @@
         };
 
         if (newForm.bloque_preferido === "") {
-            alert("Por favor, seleccione un bloque preferido.");
+            displayAlert({msg:"Por favor, seleccione un bloque preferido.",type:'alert-warning'},)
             return;
         }
-        showAlert = true;
         updateForm(newForm);
         loader = true;
         const resp = await sendForm($form);
         if (!resp.ok) {
-            alert("ocurrio un error al guardar el formulario");
+            displayAlert({msg: 'ocurrion un error al enviar el formulario',type: 'alert-error'})
             return;
         }
+        displayAlert({msg:'el formulario se envio satisfactoriamente',type: 'alert-info'})
         form_results.set(await resp.json());
-        loader = false;
         setTimeout(() => {
-            showAlert = false;
-
+            loader = false;
             navigate("/respuestas");
         }, 500);
     }
@@ -423,15 +430,8 @@
         </form>
     </div>
 </div>
-
 {#if showAlert}
-    <div
-        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-    >
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl mb-4">Respuestas enviadas satifactoriamente</h3>
-        </div>
-    </div>
+    <PopUpInfo {...alert} />
 {/if}
 
 {#if showModal}
