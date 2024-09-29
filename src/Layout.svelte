@@ -32,7 +32,8 @@
     </div>
     
     <footer class="bg-gray-800 text-white p-4 text-center w-full">
-        <p>Universidad Privada Dr. Rafael Belloso Chacín.</p>
-        <p>©2024 Powered by Servieduca All rights reserved</p>
+        <p>SERVIEDUCA | © 1989 - 2024</p>
+        <p>Dirección de Tecnologías de la Información - Unidad de Servicios Web</p>
+        <p>Todos los derechos reservados. RIF J-07033322-7</p>
     </footer>
 </div>
