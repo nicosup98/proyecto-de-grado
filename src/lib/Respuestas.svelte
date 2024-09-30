@@ -43,8 +43,17 @@
         event.preventDefault();
         window.location.href = "https://urbesustentable.urbe.edu";
     }
-</script>
 
+    function handleScroll(event) {
+        const element = event.target;
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            window.scrollBy({
+                top: 100, // Ajusta este valor según sea necesario
+                behavior: 'smooth'
+            });
+        }
+    }
+</script>
 
 <style>
     @keyframes fadeIn {
@@ -85,7 +94,7 @@
             <p class="text-lg text-white text-center mb-8">Con tus respuestas, ayudaremos a generar estrategias para un uso más eficiente del agua dentro de la universidad.</p>
         </div>
         <div class="w-full md:w-1/2 fade-in-after">
-            <form on:submit={handleSubmit} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full max-h-[65vh] overflow-y-auto">
+            <form on:submit={handleSubmit} on:scroll={handleScroll} class="bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 p-10 rounded-lg w-full max-h-[65vh] overflow-y-auto">
                 <div class="relative z-10 mb-4 text-center">
                     <h2 class="text-2xl font-bold text-white">Respuestas</h2>
                 </div>
