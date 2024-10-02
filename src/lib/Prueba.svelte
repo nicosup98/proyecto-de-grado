@@ -125,13 +125,13 @@
 
 <div class="flex justify-center items-center py-4">
     <div class="flex justify-around flex-col md:flex-row w-full md:w-3/4">
-        <div class="md:w-1/2 p-10 text-white md:mr-10">
+        <div class="flex flex-col justify-center md:w-1/2 p-10 text-white md:mr-10">
             <h1
-                class="text-3xl md:text-4xl font-bold mb-4 text-center relative top-[-40px]"
+                class="text-3xl md:text-4xl font-bold mb-4  relative top-[-40px]"
             >
                 Registro de Consumo de Agua dentro de URBE
             </h1>
-            <p class="text-lg text-center relative top-[-22px]">
+            <p class="text-lg relative top-[-22px]">
                 Por favor, registre su consumo de agua dentro de la universidad.
                 Los datos deben ser un promedio semanal.
             </p>
@@ -463,7 +463,7 @@
                 </label>
             {/if}
             <label class="block mb-4">
-                {newExpenseName == "botellon" ? "botellones" : "litros"} por semana:
+                {selectedExpenseOption == "botellon" ? "botellones" : "litros"} por semana:
                 <input
                     type="number"
                     bind:value={newExpenseValue}

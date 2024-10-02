@@ -19,7 +19,6 @@
     <Route path="/loginAdmin" component={Admin}/>
     <Route path="/respuestas" component={Respuestas}/>
     <Route path="/formulario" component={Prueba}/>
-    <Route path="/admin" component={AdminHome} />
   </div>
 </Layout>
 
