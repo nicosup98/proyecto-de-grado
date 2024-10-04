@@ -113,28 +113,28 @@
 
                 <hr class="border-t border-gray-300 my-4">
 
-                {#if litrosLavamanos * 4.34524 > 50}
+                {#if litrosLavamanos * 4.34524 > 80}
                 <div class="flex flex-col items-center p-2">
                     <p class="text-lg mb-2 bg-sky-300 rounded-lg p-2 text-blue-950 font-bold text-center">Vimos que tu consumo de agua en el lavamanos fue de {litrosLavamanos} litros, te recomendamos que reduzcas el uso del lavamanos para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
-                {#if litrosUrinarios * 4.34524 > 50}
+                {#if litrosUrinarios * 4.34524 > 150}
                 <div class="flex flex-col items-center p-2">
                     <p class="text-lg mb-2 bg-sky-300 rounded-lg p-2 text-blue-950 font-bold text-center">Vimos que tu consumo de agua en los urinarios fue de {litrosUrinarios} litros, te recomendamos que reduzcas el uso de los urinarios para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
-                {#if litrosInodoro * 4.34524 > 50}
+                {#if litrosInodoro * 4.34524 > 200}
                 <div class="flex flex-col items-center p-2">
                     <p class="text-lg mb-2 bg-sky-300 rounded-lg p-2 text-blue-950 font-bold text-center">Vimos que tu consumo de agua en el inodoro fue de {litrosInodoro} litros, te recomendamos que reduzcas el uso del inodoro para ahorrar agua.</p>
                 </div>
                 <hr class="border-t border-gray-300 my-4">
                 {/if}
 
-                {#if litrosBebedero * 4.34524 > 50}
+                {#if litrosBebedero * 4.34524 > 45}
                 <div class="flex flex-col items-center p-2">
                     <p class="text-lg mb-2 bg-sky-300 rounded-lg p-2 text-blue-950 font-bold text-center">Vimos que tu consumo de agua en el bebedero fue de {litrosBebedero} litros, te recomendamos que reduzcas el uso del bebedero para ahorrar agua.</p>
                 </div>
