@@ -133,17 +133,13 @@
         {#if loader}
           <span class="loading loading-spinner loading-md"></span>
         {/if}
-      </button>
+      </button>truetrue
       <div class="flex justify-center my-4"></div>
       <button class="glow-on-hover bg-white text-gray-600 rounded px-4 py-2 font-bold w-full flex items-center justify-center gap-2" on:click={handleOauthGmail}>
-        <img src="\public\icono_google.png" alt="Google Icon" class="w-6 h-6" />
+        <img src="/icono_google.png" alt="Google Icon" class="w-6 h-6" />
         Inicia Sesión Con Google
       </button>
-      <!-- <button
-        
-        class="btn btn-primary text-white p-2 rounded-lg w-full text-white hover:bg-blue-700 transition-colors duration-300"
-        >continuar con google</button
-      > -->
+      
     </div>
   </form>
 </div>
