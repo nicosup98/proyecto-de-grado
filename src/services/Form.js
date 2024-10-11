@@ -1,5 +1,4 @@
-const back_url = "https://nicosup98-proyecto-de-86.deno.dev"
-
+import { back_url } from './index'
 export function sendForm(form_data) {
     return fetch(`${back_url}/send_form`,
         {method: 'POST',body: JSON.stringify(form_data)}
