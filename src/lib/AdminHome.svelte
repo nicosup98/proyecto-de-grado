@@ -89,9 +89,9 @@
         ></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- Sidebar content here -->
-          <li><button class="btn btn-error rounded">Cerrar Sesion</button></li>
-        </ul>
-      </div>
+            <li><button class="btn btn-primary rounded" on:click={() => window.location.href = '/ConsumosAdmin'}>Datos de Consumo</button></li>
+        <li class="my-4"><button class="btn btn-error rounded">Cerrar Sesion</button></li>
+        </div>
     </div>
     <!-- <img src="urbe_logo.png" class="w-16 zoom-img" alt="" /> -->
   </div>
