@@ -7,6 +7,8 @@
   import Prueba from "./lib/Prueba.svelte";
   import Layout from "./Layout.svelte";
   import { fade } from 'svelte/transition'
+    import AdminHomeConsumos from "./lib/AdminConsumos.svelte";
+    import AdminConsumos from "./lib/AdminConsumos.svelte";
   export let url = "";
 </script>
 
@@ -14,11 +16,13 @@
 
 <Layout>
   <div class="container mx-auto m-3 h-full">
-    <Route path="/admin" component={AdminHome} />
+    <Route path="/administrador" component={AdminHome} />
     <Route path="/" component={Inicio}/>
     <Route path="/loginAdmin" component={Admin}/>
     <Route path="/respuestas" component={Respuestas}/>
     <Route path="/formulario" component={Prueba}/>
+     <Route path="/ConsumosAdmin" component={AdminConsumos}/>
+ 
   </div>
 </Layout>
 
