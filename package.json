@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
+    "chart.js": "^4.4.7",
     "confetti-js": "^0.0.18",
     "decimal.js": "^10.4.3",
     "party-js": "^2.2.0",

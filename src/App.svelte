@@ -7,13 +7,11 @@
   import Prueba from "./lib/Prueba.svelte";
   import Layout from "./Layout.svelte";
   import { fade } from 'svelte/transition'
-    import AdminHomeConsumos from "./lib/AdminConsumos.svelte";
-    import AdminConsumos from "./lib/AdminConsumos.svelte";
+  import AdminConsumos from "./lib/AdminConsumos.svelte";
   export let url = "";
 </script>
 
 <Router {url}  viewtransition="{() => ({ fn: fade, duration: 250 })}">
-
 <Layout>
   <div class="container mx-auto m-3 h-full">
     <Route path="/administrador" component={AdminHome} />
@@ -21,10 +19,10 @@
     <Route path="/loginAdmin" component={Admin}/>
     <Route path="/respuestas" component={Respuestas}/>
     <Route path="/formulario" component={Prueba}/>
-     <Route path="/ConsumosAdmin" component={AdminConsumos}/>
- 
+    <Route path="/ConsumosAdmin" component={AdminConsumos}/>
   </div>
 </Layout>
+
 
 
 </Router>
