@@ -69,21 +69,22 @@
   ];
 </script>
 
-<div>
-  <div class="flex justify-between">
-    <div class="drawer z-20">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content">
-        <!-- Page content here -->
-        <label for="my-drawer" class="flex">
-          <div class="btn btn-ghost text-xl drawer-button">
-            <img src="burger.svg" alt="" />
-          </div>
-          <div class="flex items-center gap-1">
-            Bienvenido Admin <img src="image.png" class="w-4" alt="" />
-          </div>
-        </label>
-      </div>
+
+  <div class="text-white">
+    <div class="flex justify-between text-white">
+      <div class="drawer z-20">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- Page content here -->
+          <label for="my-drawer" class="flex animate-slide-in">
+            <div class="btn btn-ghost text-xl drawer-button">
+              <img src="burger.svg" alt="" class="filter invert w-7" />
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-xl">Bienvenido Admin</span> <img src="image.png" class="w-7 filter invert" alt="" />
+            </div>
+          </label>
+        </div>
       <div class="drawer-side">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
         ></label>
