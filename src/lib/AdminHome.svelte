@@ -51,7 +51,7 @@
           labels: dataOfdispenser.map(d => d.dispensador),
           datasets: [{
             data: dataOfdispenser.map(d => d.consumo),
-            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+            backgroundColor: ["#FF6384", "#800080", "#FFCE56"],
           }]
         },
         options: {
@@ -77,7 +77,7 @@
           datasets: [{
             label: "Consumo por Bloque",
             data: dataOfBlocks.map(d => d.consumo),
-            backgroundColor: "#36A2EB",
+            backgroundColor: "#FFCE56", // Cambiado a amarillo
           }]
         },
         options: {
@@ -115,7 +115,7 @@
           datasets: [{
             label: "Consumo por Tipo de Persona",
             data: dataOfPersons.map(d => d.consumo),
-            backgroundColor: "#367588",
+            backgroundColor: "#4CAF50", // Cambiado a verde
           }]
         },
         options: {
@@ -214,37 +214,33 @@
     <BlueBox title="Litros Mensuales" body="80000 L" />
     <aside class="flex-col p-3 w-full md:w-[245px]">
       <div>
-        <span class="text-base">Promedio de Litros por Persona (Mensuales)</span>
-        <p class="text-xl text-cyan-300 my-1">62 L</p>
-      </div>
-      <div>
-        <span class="text-base">Personas Registradas</span>
-        <p class="text-xl text-cyan-300">12.128</p>
-      </div>
-    </aside>
+        <span class="text-base">Nota:</span>
+        <p class="text-xl text-white-300 my-1">Todos los datos son por mes</p>
+            </div>
+          </aside>
   </section>
   <div class="divider"></div>
   <section class="charts-grid">
     <div class="text-center">
-      <span class="text-lg" id="consumo-dispensador">Consumo por Dispensador</span>
+      <span class="chart-title text-lg" id="consumo-dispensador">Consumo por Dispensador</span>
       <div class="chart-container">
         <canvas id="dispenserChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="text-lg" id="consumo-bloque">Consumo por Bloque</span>
+      <span class="chart-title text-lg" id="consumo-bloque">Consumo por Bloque</span>
       <div class="chart-container">
         <canvas id="blocksChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="text-lg" id="consumo-persona">Consumo por Tipo de Persona</span>
+      <span class="chart-title text-lg" id="consumo-persona">Consumo por Tipo de Persona</span>
       <div class="chart-container">
         <canvas id="personsChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="text-lg" id="consumo-mensual">Consumo Mensual</span>
+      <span class="chart-title text-lg" id="consumo-mensual">Consumo Mensual</span>
       <div class="chart-container">
         <canvas id="monthlyChart"></canvas>
       </div>
@@ -282,5 +278,19 @@
     width: 100%;
     height: auto;
     max-width: 100%;
+  }
+
+  .chart-title {
+    font-size: 2rem; /* Agrandar el tamaño de la fuente */
+    animation: fadeIn 1s ease-in-out; /* Agregar animación */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 </style>
