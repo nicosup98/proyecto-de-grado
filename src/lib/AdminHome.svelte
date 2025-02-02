@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
-  import BlueBox from "./BlueBox.svelte";
 
   const dataOfdispenser = [
     { dispensador: "lavamanos", consumo: 1200 },
@@ -208,16 +207,25 @@
       </div>
     </div>
   </div>
-  <section class="flex flex-wrap justify-around my-3">
-    <BlueBox title="Personas" body="12.128" />
-    <BlueBox title="Promedio por Persona" body="62 L" />
-    <BlueBox title="Litros Mensuales" body="80000 L" />
+  <section class="flex flex-wrap justify-around my-3 info-box-section">
+    <div class="info-box">
+      <h2 class="info-box-title">Personas</h2>
+      <p class="info-box-body">12.128</p>
+    </div>
+    <div class="info-box">
+      <h2 class="info-box-title">Promedio por Persona</h2>
+      <p class="info-box-body">62 L</p>
+    </div>
+    <div class="info-box">
+      <h2 class="info-box-title">Litros Mensuales</h2>
+      <p class="info-box-body">80000 L</p>
+    </div>
     <aside class="flex-col p-3 w-full md:w-[245px]">
       <div>
         <span class="text-base">Nota:</span>
         <p class="text-xl text-white-300 my-1">Todos los datos son por mes</p>
-            </div>
-          </aside>
+      </div>
+    </aside>
   </section>
   <div class="divider"></div>
   <section class="charts-grid">
@@ -292,5 +300,51 @@
     to {
       opacity: 1;
     }
+  }
+
+  .info-box-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .info-box {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px;
+    font-size: 1.2rem;
+    animation: slideIn 1s ease-in-out;
+    flex: 1 1 30%; /* Ajusta el tamaño de las cajas */
+    max-width: 30%; /* Asegura que las cajas no excedan el 30% del ancho del contenedor */
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .info-box-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .info-box-body {
+    font-size: 1.2rem;
   }
 </style>
