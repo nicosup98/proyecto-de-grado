@@ -317,10 +317,17 @@
     margin: 10px;
     font-size: 1.2rem;
     animation: slideIn 1s ease-in-out;
-    flex: 1 1 30%; /* Ajusta el tamaño de las cajas */
-    max-width: 30%; /* Asegura que las cajas no excedan el 30% del ancho del contenedor */
+    flex: 1 1 100%; /* Ajusta el tamaño de las cajas */
+    max-width: 100%; /* Asegura que las cajas no excedan el 100% del ancho del contenedor */
     box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .info-box {
+      flex: 1 1 30%; /* Ajusta el tamaño de las cajas */
+      max-width: 30%; /* Asegura que las cajas no excedan el 30% del ancho del contenedor */
+    }
   }
 
   .info-box:hover {
