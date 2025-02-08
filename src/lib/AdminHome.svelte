@@ -23,6 +23,7 @@
     { tipo: "estudiante", consumo: 3400 },
     { tipo: "profesor", consumo: 680 },
     { tipo: "personal", consumo: 1245 },
+    { tipo: "personal de mantenimiento", consumo: 50245 },
   ];
 
   const dataOfMonthlyConsumption = [
