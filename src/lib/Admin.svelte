@@ -1,10 +1,8 @@
-
-
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <div class="flex justify-center items-center min-h-screen bg-cover bg-center" style="background-image: url('bg.jpg');">
-  <div class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8">
+  <div class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8 mt-[-80px] h-[400px]">
       <form action="">
-          <h1 class="text-3xl text-center mb-6">Login</h1>
+          <h1 class="text-3xl text-center mb-6">Iniciar Sesión Como Administrador</h1>
           <div class="input-box relative w-full h-12 mb-8">
             <input type="text" placeholder="Usuario" required class="w-full h-full bg-white bg-opacity-20 border-none outline-none border-2 border-white border-opacity-20 rounded-full text-white placeholder-white px-5 py-2.5">
             <i class='bx bxs-user absolute right-5 top-1/2 transform -translate-y-1/2 text-xl'></i>

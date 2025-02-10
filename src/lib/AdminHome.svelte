@@ -16,6 +16,12 @@
     { bloque: "bloque E", consumo: 56 },
     { bloque: "bloque F", consumo: 587 },
     { bloque: "bloque G", consumo: 467 },
+    { bloque: "cancha", consumo: 467 },
+    { bloque: "rectorado", consumo: 467 },
+    { bloque: "feria de comida", consumo: 467 },
+    { bloque: "vivero", consumo: 467 },
+    { bloque: "centro de mantenimiento", consumo: 467 },
+    { bloque: "otro", consumo: 467 },
   ];
 
   const dataOfPersons = [
@@ -75,7 +81,7 @@
         data: {
           labels: dataOfBlocks.map(d => d.bloque),
           datasets: [{
-            label: "Consumo por Bloque",
+            label: "Lugares donde frecuentan los usuarios",
             data: dataOfBlocks.map(d => d.consumo),
             backgroundColor: "#FFCE56", // Cambiado a amarillo
           }]
@@ -237,7 +243,7 @@
       </div>
     </div>
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-bloque">Consumo por Bloque</span>
+      <span class="chart-title text-lg" id="consumo-bloque">Lugares de Frecuencia de los Usuarios</span>
       <div class="chart-container">
         <canvas id="blocksChart"></canvas>
       </div>
