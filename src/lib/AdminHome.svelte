@@ -1,30 +1,37 @@
 <script>
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
+  import { checkToken, getDashboard } from "../services/admin";
+  import { navigate } from "svelte-routing";
 
-  const dataOfdispenser = [
-    { dispensador: "lavamanos", consumo: 1200 },
-    { dispensador: "inodoros", consumo: 4650 },
-    { dispensador: "bebederos", consumo: 456 },
+  let years = [];
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
+  let search = {
+    month: "",
+    year: "",
+  };
+  function genYears() {
+    for (let i = 2000; i <= new Date().getFullYear(); i++) {
+      years = [...years, i];
+    }
+  }
 
-  const dataOfBlocks = [
-    { bloque: "bloque A", consumo: 203 },
-    { bloque: "bloque B", consumo: 123 },
-    { bloque: "bloque c", consumo: 345 },
-    { bloque: "bloque D", consumo: 304 },
-    { bloque: "bloque E", consumo: 56 },
-    { bloque: "bloque F", consumo: 587 },
-    { bloque: "bloque G", consumo: 467 },
-  ];
+  let dataDashboard = {}
 
-  const dataOfPersons = [
-    { tipo: "invitado", consumo: 124 },
-    { tipo: "estudiante", consumo: 3400 },
-    { tipo: "profesor", consumo: 680 },
-    { tipo: "personal", consumo: 1245 },
-    { tipo: "personal de mantenimiento", consumo: 50245 },
-  ];
+
 
   const dataOfMonthlyConsumption = [
     { mes: "Enero", consumo: 5000 },
@@ -41,29 +48,45 @@
     { mes: "Diciembre", consumo: 4600 },
   ];
 
-  onMount(() => {
+  onMount(async () => {
+    genYears();
+    const token = checkToken();
+    if (!token) {
+      navigate("/");
+    }
+
+    const resp = await getDashboard(null, token);
+    if (!resp.ok) {
+      alert("ocurrio un error al consultar dashboard");
+      console.error(await resp.text());
+    }
+    const {data} = await resp.json();
+    dataDashboard = data
+    console.log(data)
     const dispenserCanvas = document.getElementById("dispenserChart");
     if (dispenserCanvas instanceof HTMLCanvasElement) {
       const dispenserCtx = dispenserCanvas.getContext("2d");
       new Chart(dispenserCtx, {
         type: "doughnut",
         data: {
-          labels: dataOfdispenser.map(d => d.dispensador),
-          datasets: [{
-            data: dataOfdispenser.map(d => d.consumo),
-            backgroundColor: ["#FF6384", "#800080", "#FFCE56"],
-          }]
+          labels: data.consumo_dispensador.map((d) => d.dispensador),
+          datasets: [
+            {
+              data: data.consumo_dispensador.map((d) => d.consumo / data.consumo_total_dispensador *100),
+              backgroundColor: ["#FF6384", "#800080", "#FFCE56", "#5b1eea",'#45f75a'],
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
             legend: {
               labels: {
-                color: "white"
-              }
-            }
-          }
-        }
+                color: "white",
+              },
+            },
+          },
+        },
       });
     }
 
@@ -73,35 +96,37 @@
       new Chart(blocksCtx, {
         type: "bar",
         data: {
-          labels: dataOfBlocks.map(d => d.bloque),
-          datasets: [{
-            label: "Consumo por Bloque",
-            data: dataOfBlocks.map(d => d.consumo),
-            backgroundColor: "#FFCE56", // Cambiado a amarillo
-          }]
+          labels: data.consumo_bloque.map((d) => d.bloque),
+          datasets: [
+            {
+              label: "Consumo por Bloque",
+              data: data.consumo_bloque.map((d) => d.consumo),
+              backgroundColor: "#FFCE56", // Cambiado a amarillo
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
             legend: {
               labels: {
-                color: "white"
-              }
-            }
+                color: "white",
+              },
+            },
           },
           scales: {
             x: {
               ticks: {
-                color: "white"
-              }
+                color: "white",
+              },
             },
             y: {
               ticks: {
-                color: "white"
-              }
-            }
-          }
-        }
+                color: "white",
+              },
+            },
+          },
+        },
       });
     }
 
@@ -111,35 +136,37 @@
       new Chart(personsCtx, {
         type: "bar",
         data: {
-          labels: dataOfPersons.map(d => d.tipo),
-          datasets: [{
-            label: "Consumo por Tipo de Persona",
-            data: dataOfPersons.map(d => d.consumo),
-            backgroundColor: "#4CAF50", // Cambiado a verde
-          }]
+          labels: data.consumo_tipo.map((d) => d.tipo),
+          datasets: [
+            {
+              label: "Consumo por Tipo de Persona",
+              data: data.consumo_tipo.map((d) => d.consumo),
+              backgroundColor: "#4CAF50", // Cambiado a verde
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
             legend: {
               labels: {
-                color: "white"
-              }
-            }
+                color: "white",
+              },
+            },
           },
           scales: {
             x: {
               ticks: {
-                color: "white"
-              }
+                color: "white",
+              },
             },
             y: {
               ticks: {
-                color: "white"
-              }
-            }
-          }
-        }
+                color: "white",
+              },
+            },
+          },
+        },
       });
     }
 
@@ -149,35 +176,37 @@
       new Chart(monthlyCtx, {
         type: "bar",
         data: {
-          labels: dataOfMonthlyConsumption.map(d => d.mes),
-          datasets: [{
-            label: "Consumo Mensual",
-            data: dataOfMonthlyConsumption.map(d => d.consumo),
-            backgroundColor: "#FF6347",
-          }]
+          labels: dataOfMonthlyConsumption.map((d) => d.mes),
+          datasets: [
+            {
+              label: "Consumo Mensual",
+              data: dataOfMonthlyConsumption.map((d) => d.consumo),
+              backgroundColor: "#FF6347",
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
             legend: {
               labels: {
-                color: "white"
-              }
-            }
+                color: "white",
+              },
+            },
           },
           scales: {
             x: {
               ticks: {
-                color: "white"
-              }
+                color: "white",
+              },
             },
             y: {
               ticks: {
-                color: "white"
-              }
-            }
-          }
-        }
+                color: "white",
+              },
+            },
+          },
+        },
       });
     }
   });
@@ -194,32 +223,43 @@
             <img src="burger.svg" alt="" class="filter invert w-7" />
           </div>
           <div class="flex items-center gap-1">
-            <span class="text-xl">Bienvenido Admin</span> <img src="image.png" class="w-7 filter invert" alt="" />
+            <span class="text-xl">Bienvenido Admin</span>
+            <img src="image.png" class="w-7 filter invert" alt="" />
           </div>
         </label>
       </div>
       <div class="drawer-side">
-        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
+        ></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- Sidebar content here -->
-          <li><button class="btn btn-primary rounded" on:click={() => window.location.href = '/ConsumosAdmin'}>Datos de Consumo</button></li>
-          <li class="my-4"><button class="btn btn-error rounded">Cerrar Sesion</button></li>
+          <li>
+            <button
+              class="btn btn-primary rounded"
+              on:click={() => (window.location.href = "/ConsumosAdmin")}
+              >Datos de Consumo</button
+            >
+          </li>
+          <li class="my-4">
+            <button class="btn btn-error rounded">Cerrar Sesion</button>
+          </li>
         </ul>
       </div>
     </div>
   </div>
+  
   <section class="flex flex-wrap justify-around my-3 info-box-section">
     <div class="info-box">
       <h2 class="info-box-title">Personas</h2>
-      <p class="info-box-body">12.128</p>
+      <p class="info-box-body">{dataDashboard.cantidad_personas}</p>
     </div>
     <div class="info-box">
       <h2 class="info-box-title">Promedio por Persona</h2>
-      <p class="info-box-body">62 L</p>
+      <p class="info-box-body">{dataDashboard.promedio_consumo}</p>
     </div>
     <div class="info-box">
-      <h2 class="info-box-title">Litros Mensuales</h2>
-      <p class="info-box-body">80000 L</p>
+      <h2 class="info-box-title">Litros Totales</h2>
+      <p class="info-box-body">{dataDashboard.consumo_total}L</p>
     </div>
     <aside class="flex-col p-3 w-full md:w-[245px]">
       <div>
@@ -231,29 +271,30 @@
   <div class="divider"></div>
   <section class="charts-grid">
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-dispensador">Consumo por Dispensador</span>
+      <span class="chart-title text-lg" id="consumo-dispensador"
+        >Consumo por Dispensador</span
+      >
       <div class="chart-container">
         <canvas id="dispenserChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-bloque">Consumo por Bloque</span>
+      <span class="chart-title text-lg" id="consumo-bloque"
+        >Consumo por Bloque</span
+      >
       <div class="chart-container">
         <canvas id="blocksChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-persona">Consumo por Tipo de Persona</span>
+      <span class="chart-title text-lg" id="consumo-persona"
+        >Consumo por Tipo de Persona</span
+      >
       <div class="chart-container">
         <canvas id="personsChart"></canvas>
       </div>
     </div>
-    <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-mensual">Consumo Mensual</span>
-      <div class="chart-container">
-        <canvas id="monthlyChart"></canvas>
-      </div>
-    </div>
+    
   </section>
 </div>
 
@@ -321,7 +362,9 @@
     flex: 1 1 100%; /* Ajusta el tamaño de las cajas */
     max-width: 100%; /* Asegura que las cajas no excedan el 100% del ancho del contenedor */
     box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   @media (min-width: 768px) {
