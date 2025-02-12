@@ -11,6 +11,13 @@
   let showModal = false;
   let showModalGasto = false;
   let tipoRecoleccion = 'recoleccion';
+  let formGastoAdmin = {}
+
+  $: {
+    formGastoAdmin = {tipoRecoleccion}
+  }
+
+  
 
   const monthlyData = [
     { month: "Enero", consumoRojo: 500, consumoAzul: 500, colorRojo: "#FF6347", colorAzul: "#1E90FF" },
@@ -27,12 +34,20 @@
     { month: "Diciembre", consumoRojo: 1000, consumoAzul: 1000, colorRojo: "#FF6347", colorAzul: "#1E90FF" },
   ];
 
+
+
   function openModal() {
     showModal = true;
   }
 
   function closeModal() {
     showModal = false;
+  }
+
+  function saveForm() {
+    showModal = false;
+
+    console.log({formGastoAdmin})
   }
 
   function openModalGasto() {
@@ -121,7 +136,7 @@
     <div class="drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 text-white">
-        <!-- Sidebar content here -->
+        <!-- Sidebar content here no se redirecciona asi es con link -->
         <li><button class="btn btn-primary rounded" on:click={() => window.location.href = '/administrador'}>Datos del Formulario</button></li>
         <li class="my-4"><button class="btn btn-error rounded">Cerrar Sesion</button></li>
       </ul>
@@ -157,7 +172,7 @@
       </select>
 
       <label for="mes">Mes:</label>
-      <select id="mes" class="select select-bordered w-full mb-4">
+      <select id="mes" name="mes" class="select select-bordered w-full mb-4"  bind:value={formGastoAdmin.mes}>
         <option value="Enero">Enero</option>
         <option value="Febrero">Febrero</option>
         <option value="Marzo">Marzo</option>
@@ -174,16 +189,16 @@
 
       {#if tipoRecoleccion === 'recoleccion'}
       <label for="litrosRecolectados">Litros Recolectados:</label>
-      <input type="number" id="litrosRecolectados" class="input input-bordered w-full mb-4" max="9999999999" />
+      <input type="number" id="litrosRecolectados" bind:value={formGastoAdmin.cantidad} class="input input-bordered w-full mb-4" max="9999999999" />
       {/if}
 
       {#if tipoRecoleccion === 'compra'}
       <label for="litrosComprados">Litros Comprados:</label>
-      <input type="number" id="litrosComprados" class="input input-bordered w-full mb-4" max="9999999999" />
+      <input type="number" id="litrosComprados" bind:value={formGastoAdmin.cantidad} class="input input-bordered w-full mb-4" max="9999999999" />
       {/if}
 
       <div class="flex justify-between mt-4">
-        <button type="button" class="btn btn-primary w-full md:w-auto" on:click={closeModal}>Guardar</button>
+        <button type="button" class="btn btn-primary w-full md:w-auto" on:click={saveForm}>Guardar</button>
         <button class="btn btn-secondary w-full md:w-auto" on:click={closeModal}>Cerrar</button>
       </div>
     </form>
@@ -197,7 +212,7 @@
     <h3 class="text-lg font-bold">Litros que se Gastaron</h3>
     <form>
       <label for="mesGasto">Mes:</label>
-      <select id="mesGasto" class="select select-bordered w-full mb-4">
+      <select id="mesGasto" name="mes" class="select select-bordered w-full mb-4">
         <option value="Enero">Enero</option>
         <option value="Febrero">Febrero</option>
         <option value="Marzo">Marzo</option>
