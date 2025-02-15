@@ -29,9 +29,7 @@
     }
   }
 
-  let dataDashboard = {}
-
-
+  let dataDashboard = {};
 
   const dataOfMonthlyConsumption = [
     { mes: "Enero", consumo: 5000 },
@@ -57,12 +55,16 @@
 
     const resp = await getDashboard(null, token);
     if (!resp.ok) {
+      if (resp.status == 403) {
+        localStorage.clear();
+        navigate("/loginAdmin");
+      }
       alert("ocurrio un error al consultar dashboard");
       console.error(await resp.text());
     }
-    const {data} = await resp.json();
-    dataDashboard = data
-    console.log(data)
+    const { data } = await resp.json();
+    dataDashboard = data;
+    console.log(data);
     const dispenserCanvas = document.getElementById("dispenserChart");
     if (dispenserCanvas instanceof HTMLCanvasElement) {
       const dispenserCtx = dispenserCanvas.getContext("2d");
@@ -72,8 +74,16 @@
           labels: data.consumo_dispensador.map((d) => d.dispensador),
           datasets: [
             {
-              data: data.consumo_dispensador.map((d) => d.consumo / data.consumo_total_dispensador *100),
-              backgroundColor: ["#FF6384", "#800080", "#FFCE56", "#5b1eea",'#45f75a'],
+              data: data.consumo_dispensador.map(
+                (d) => (d.consumo / data.consumo_total_dispensador) * 100,
+              ),
+              backgroundColor: [
+                "#FF6384",
+                "#800080",
+                "#FFCE56",
+                "#5b1eea",
+                "#45f75a",
+              ],
             },
           ],
         },
@@ -247,7 +257,7 @@
       </div>
     </div>
   </div>
-  
+
   <section class="flex flex-wrap justify-around my-3 info-box-section">
     <div class="info-box">
       <h2 class="info-box-title">Personas</h2>
@@ -294,7 +304,6 @@
         <canvas id="personsChart"></canvas>
       </div>
     </div>
-    
   </section>
 </div>
 
