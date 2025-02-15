@@ -1,3 +1,7 @@
+<script>
+    import { Link } from 'svelte-routing'
+</script>
+
 <div class="min-h-screen flex flex-col">
     <div class="ocean">
         <div class="bubble bubble--1"></div>
@@ -35,5 +39,6 @@
         <p>SERVIEDUCA | © 1989 - 2024</p>
         <p>Dirección de Tecnologías de la Información - Unidad de Servicios Web</p>
         <p>Todos los derechos reservados. RIF J-07033322-7</p>
+        <Link to='/loginAdmin'>.</Link>
     </footer>
 </div>
