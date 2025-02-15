@@ -7,6 +7,7 @@
   import BarChart from "./BarChart.svelte";
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
+    import { navigate } from "svelte-routing";
 
   let showModal = false;
   let showModalGasto = false;
@@ -59,7 +60,7 @@
   }
 
   function handleEdit() {
-    window.location.href = "/editar-gasto";
+    navigate("/editar-gasto");
   }
 
   function handleView() {

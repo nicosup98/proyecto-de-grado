@@ -8,6 +8,7 @@
   import Layout from "./Layout.svelte";
   import { fade } from 'svelte/transition'
   import AdminConsumos from "./lib/AdminConsumos.svelte";
+    import EditarGasto from "./lib/EditarGasto.svelte";
   export let url = "";
 </script>
 
@@ -20,6 +21,8 @@
     <Route path="/respuestas" component={Respuestas}/>
     <Route path="/formulario" component={Prueba}/>
     <Route path="/ConsumosAdmin" component={AdminConsumos}/>
+    <Route path="/editar-gasto" component={EditarGasto}/>
+
   </div>
 </Layout>
 
