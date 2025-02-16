@@ -5,6 +5,8 @@
   import dayjs from "dayjs";
   import timezone from "dayjs/plugin/timezone";
   import utc from "dayjs/plugin/utc";
+  import { Link } from "svelte-routing";
+
   const title = [
     "Agua comprada",
     "Agua recolectada",
@@ -64,16 +66,11 @@
       </label>
     </div>
     <div class="drawer-side">
-      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
-      ></label>
+      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
         <!-- Sidebar content here -->
         <li>
-          <button
-            class="btn btn-primary rounded"
-            on:click={() => (window.location.href = "/ConsumosAdmin")}
-            >Datos de Consumo</button
-          >
+          <Link to="/ConsumosAdmin" class="btn btn-primary rounded">Datos de Consumo</Link>
         </li>
         <li class="my-4">
           <button class="btn btn-error rounded">Cerrar Sesion</button>
@@ -100,8 +97,7 @@
           <th>
             <button
               class="bg-white text-blue-700 rounded p-2"
-              on:click={() => verInfo(r)}>ver</button
-            >
+              on:click={() => verInfo(r)}>ver</button>
           </th>
         </tr>
       {/each}
@@ -111,14 +107,10 @@
   <dialog class="modal" bind:this={dialogRef} id="modal">
     <div class="modal-box">
       <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          >✕</button
-        >
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
       </form>
       <form on:submit={handleEditConsumoReal} class="flex flex-col gap-2">
-        <label
-          class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded"
-        >
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua comprada:
           <input
             type="text"
@@ -128,9 +120,7 @@
             placeholder="12345"
           />
         </label>
-        <label
-          class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded"
-        >
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua sumistrada:
           <input
             type="text"
@@ -139,9 +129,7 @@
             placeholder="12345"
           />
         </label>
-        <label
-          class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded"
-        >
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua Recolectada:
           <input
             type="text"
@@ -150,9 +138,7 @@
             placeholder="12345"
           />
         </label>
-        <label
-          class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded"
-        >
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua gastada:
           <input
             type="text"
@@ -161,9 +147,7 @@
             placeholder="12345"
           />
         </label>
-        <label
-          class="flex items-center gap-2 datepicker-input input input-bordered w-[90%] mx-auto input-primary text-blue-700 placeholder-primary rounded"
-        >
+        <label class="flex items-center gap-2 datepicker-input input input-bordered w-[90%] mx-auto input-primary text-blue-700 placeholder-primary rounded">
           fecha:
           <DateInput bind:value={consumoSelected.fecha} format="dd-MM-yyyy" />
         </label>
@@ -177,8 +161,7 @@
           <button
             type="button"
             class="btn btn-outline btn-secondary rounded"
-            on:click={closeDialog}>cerrar</button
-          >
+            on:click={closeDialog}>cerrar</button>
         </div>
       </form>
     </div>

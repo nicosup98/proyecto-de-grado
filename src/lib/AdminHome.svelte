@@ -246,7 +246,7 @@
           <li>
             <button
               class="btn btn-primary rounded"
-              on:click={() => (window.location.href = "/ConsumosAdmin")}
+              on:click={() => navigate("/ConsumosAdmin")}
               >Datos de Consumo</button
             >
           </li>
