@@ -1,21 +1,23 @@
 <script>
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
+  import { checkToken, getDashboard } from "../services/admin";
+  import { navigate } from "svelte-routing";
 
-  const dataOfdispenser = [
-    { dispensador: "lavamanos", consumo: 1200 },
-    { dispensador: "inodoros", consumo: 4650 },
-    { dispensador: "bebederos", consumo: 456 },
-  ];
-
-  const dataOfBlocks = [
-    { bloque: "bloque A", consumo: 203 },
-    { bloque: "bloque B", consumo: 123 },
-    { bloque: "bloque c", consumo: 345 },
-    { bloque: "bloque D", consumo: 304 },
-    { bloque: "bloque E", consumo: 56 },
-    { bloque: "bloque F", consumo: 587 },
-    { bloque: "bloque G", consumo: 467 },
+  let years = [];
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
   let search = {
     month: "",
@@ -104,12 +106,14 @@
       new Chart(blocksCtx, {
         type: "bar",
         data: {
-          labels: dataOfBlocks.map(d => d.bloque),
-          datasets: [{
-            label: "Consumo por Bloque",
-            data: dataOfBlocks.map(d => d.consumo),
-            backgroundColor: "#FFCE56", // Cambiado a amarillo
-          }]
+          labels: data.consumo_bloque.map((d) => d.bloque),
+          datasets: [
+            {
+              label: "Consumo por Bloque",
+              data: data.consumo_bloque.map((d) => d.consumo),
+              backgroundColor: "#FFCE56", // Cambiado a amarillo
+            },
+          ],
         },
         options: {
           responsive: true,
@@ -285,7 +289,9 @@
       </div>
     </div>
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-bloque">Consumo por Bloque</span>
+      <span class="chart-title text-lg" id="consumo-bloque"
+        >Consumo por Bloque</span
+      >
       <div class="chart-container">
         <canvas id="blocksChart"></canvas>
       </div>
