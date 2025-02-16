@@ -1,3 +1,4 @@
+
 <script>
   // @ts-ignore
   import BlueBox from "./BlueBox.svelte";
@@ -138,7 +139,7 @@
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 text-white">
         <!-- Sidebar content here no se redirecciona asi es con link -->
-        <li><button class="btn btn-primary rounded" on:click={() => window.location.href = '/administrador'}>Datos del Formulario</button></li>
+        <li><button class="btn btn-primary rounded" on:click={() => navigate('/administrador')}>Datos del Formulario</button></li>
         <li class="my-4"><button class="btn btn-error rounded">Cerrar Sesion</button></li>
       </ul>
     </div>

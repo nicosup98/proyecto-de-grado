@@ -2,23 +2,23 @@
   import { navigate } from "svelte-routing";
   import { updateForm, form_results } from "../stores/form";
   import { validarEmail } from "../services/Form";
-  import { onMount } from 'svelte'
-    import { back_url } from "../services";
+  import { onMount } from 'svelte';
+  import { back_url } from "../services";
+    
   let email = "";
   let tipo_usuario = "";
   let genero = "";
   let loader = false;
-
-  onMount(()=>{
+  onMount(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    if(urlParams.has('email')) {
-      email = atob(urlParams.get('email'))
+    if (urlParams.has('email')) {
+      email = atob(urlParams.get('email'));
     }
-  })
+  });
 
   async function handleOauthGmail(e) {
     e.preventDefault();
-    window.location.href = `${back_url}/oauth/google/login` // 
+    navigate(`${back_url}/oauth/google/login`);
   }
 
   async function handleSubmit(event) {
@@ -172,8 +172,7 @@
         67% 50%,
         84% 45%,
         100% 46%,
-        100% 100%,
-        0% 100%
+        100% 100%
       );
     }
   }

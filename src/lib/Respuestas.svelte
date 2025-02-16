@@ -1,8 +1,10 @@
 <script>
+
     import '/fondo.css'; // Ajusta la ruta según la ubicación real del archivo fondo.css
     import { form, form_results } from "../stores/form";
     import { onMount } from "svelte";
     import party from 'party-js';
+    import { navigate } from "svelte-routing";
 
     let recommendation = ''; // Variable para la recomendación general
 
@@ -41,7 +43,7 @@
 
     function handleSubmit(event) {
         event.preventDefault();
-        window.location.href = "https://urbesustentable.urbe.edu";
+        navigate("https://urbesustentable.urbe.edu");
     }
 
     function handleScroll(event) {
