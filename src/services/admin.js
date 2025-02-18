@@ -31,8 +31,15 @@ export function getConsumoReal(token) {
   })
 }
 
+export function getConsumoRealByMonts(token) {
+  return fetch(`${back_url}/admin/gastoReal/year`, {
+    headers: {
+      Authorization:`Bearer ${token}`
+    }
+  })
+}
+
 export function updateConsumoReal(token,consumoReal) {
-  console.log({consumoReal})
   return fetch(`${back_url}/admin/gastoReal`,
     {
       method: 'PUT',
@@ -42,4 +49,14 @@ export function updateConsumoReal(token,consumoReal) {
       }
     }
   )
+}
+
+export function addConsumoReal(token,consumoReal) {
+  return fetch(`${back_url}/admin/gastoReal`,{
+    method: 'POST',
+    headers: {
+      Authorization:`Bearer ${token}`
+    },
+    body: JSON.stringify(consumoReal)
+  })
 }

@@ -31,7 +31,7 @@
 
   function verInfo(consumoReal) {
     dialogRef.showModal();
-    consumoSelected = consumoReal;
+    consumoSelected = {...consumoReal,fecha: new Date(consumoReal.fecha)};
     console.log({ consumoSelected });
   }
 

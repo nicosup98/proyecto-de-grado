@@ -4,7 +4,6 @@
   import { checkToken, getDashboard } from "../services/admin";
   import { navigate } from "svelte-routing";
 
-  let years = [];
   const months = [
     "Enero",
     "Febrero",
@@ -19,16 +18,7 @@
     "Noviembre",
     "Diciembre",
   ];
-  let search = {
-    month: "",
-    year: "",
-  };
-  function genYears() {
-    for (let i = 2000; i <= new Date().getFullYear(); i++) {
-      years = [...years, i];
-    }
-  }
-
+  
   let dataDashboard = {};
 
   const dataOfMonthlyConsumption = [
@@ -47,7 +37,6 @@
   ];
 
   onMount(async () => {
-    genYears();
     const token = checkToken();
     if (!token) {
       navigate("/");
