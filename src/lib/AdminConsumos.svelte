@@ -278,6 +278,8 @@
           bind:value={formGastoAdmin.agua_recolectada}
           class="input input-bordered w-full mb-4"
           max="9999999999"
+          min="0"
+          required
         />
 
         <label for="litrosComprados">Litros Comprados:</label>
@@ -287,6 +289,9 @@
           bind:value={formGastoAdmin.agua_comprada}
           class="input input-bordered w-full mb-4"
           max="9999999999"
+          min="0"
+          required
+
         />
 
         <label for="litrosGastados">Litros Gastados:</label>
@@ -296,12 +301,15 @@
           bind:value={formGastoAdmin.agua_gastada}
           class="input input-bordered w-full mb-4"
           max="9999999999"
+          min="0"
+          required
         />
         <label for="dateInput">fecha</label>
         <DateInput
           id="dateInput"
           format="dd-MM-yyyy"
           bind:value={formGastoAdmin.fecha}
+          required
         />
 
         <div class="flex justify-between mt-4">
