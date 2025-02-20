@@ -328,10 +328,7 @@
   :root {
     --date-input-width: 100%;
   }
-  .btn-light-red {
-    background-color: #ffcccb;
-    color: black;
-  }
+
 
   .btn {
     padding: 10px 20px;
