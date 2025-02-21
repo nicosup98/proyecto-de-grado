@@ -261,10 +261,8 @@
       <p class="info-box-body">{dataDashboard.consumo_total}L</p>
     </div>
     <aside class="flex-col p-3 w-full md:w-[245px]">
-      <div>
-        <span class="text-base">Nota:</span>
-        <p class="text-xl text-white-300 my-1">Todos los datos son por mes</p>
-      </div>
+   
+ 
     </aside>
   </section>
   <div class="divider"></div>
@@ -285,7 +283,7 @@
         <canvas id="blocksChart"></canvas>
       </div>
     </div>
-    <div class="text-center">
+    <div class="text-center center">
       <span class="chart-title text-lg" id="consumo-persona"
         >Consumo por Tipo de Persona</span
       >

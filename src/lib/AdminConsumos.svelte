@@ -256,9 +256,9 @@
   <button class="btn btn-success w-full md:w-auto" on:click={handleEdit}
     >Editar Gasto de Agua</button
   >
-  <button class="btn btn-info w-full md:w-auto" on:click={openModal}
-    >Ingresos/gastos de agua</button
-  >
+  <button class="btn btn-white w-full md:w-auto" on:click={openModal}
+    >Ingresos/Egresos de Agua</button>
+  
 </div>
 
 <dialog class="modal w-full" bind:this={dialogRef}>
@@ -277,7 +277,7 @@
           id="litrosRecolectados"
           bind:value={formGastoAdmin.agua_recolectada}
           class="input input-bordered w-full mb-4"
-          max="9999999999"
+          max="999999999"
           min="0"
           required
         />
@@ -288,7 +288,7 @@
           id="litrosComprados"
           bind:value={formGastoAdmin.agua_comprada}
           class="input input-bordered w-full mb-4"
-          max="9999999999"
+          max="999999999"
           min="0"
           required
 
@@ -311,26 +311,25 @@
           bind:value={formGastoAdmin.fecha}
           required
         />
-
         <div class="flex justify-between mt-4">
+          <button
+            type="button"
+            class="btn btn-error w-full md:w-auto"
+            on:click={closeModal}
+          >
+            Cerrar
+          </button>
           <button type="submit" class="btn btn-primary w-full md:w-auto">
             {#if loading}
               <span class="loading loading-spinner text-primary"></span>
             {/if}
             Guardar
           </button>
-          <button
-            type="button"
-            class="btn btn-secondary w-full md:w-auto"
-            on:click={closeModal}
-          >
-            Cerrar
-          </button>
         </div>
-      </form>
-    </div>
-  </div>
-</dialog>
+            </form>
+          </div>
+        </div>
+      </dialog>
 
 <style>
   :root {
