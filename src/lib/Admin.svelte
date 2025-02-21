@@ -33,10 +33,10 @@ class="flex justify-center items-center min-h-screen bg-cover bg-center"
 style="background-image: url('bg.jpg');"
 >
 <div
-  class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8"
+  class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8 w-96"
 >
   <form action="" on:submit={handleLogin}>
-    <h1 class="text-3xl text-center mb-6">Login</h1>
+    <h1 class="text-3xl text-center mb-6">Inicio De Sesión</h1>
     <div class="input-box relative w-full h-12 mb-8">
       <input
         type="text"
@@ -63,8 +63,8 @@ style="background-image: url('bg.jpg');"
     </div>
     <button
       type="submit"
-      class="btn w-full h-12 bg-green-400 border-none outline-none rounded-full shadow-md cursor-pointer text-lg text-gray-800 font-semibold transition-colors duration-300 hover:bg-blue-200"
-      >Login</button
+      class="btn w-full h-12 bg-green-300 border-none outline-none rounded-full shadow-md cursor-pointer text-lg text-gray-800 font-semibold transition-transform duration-300 transform hover:scale-105"
+      >Iniciar Sesión</button
     >
   </form>
 </div>

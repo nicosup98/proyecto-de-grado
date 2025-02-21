@@ -50,7 +50,7 @@
   }
 </script>
 
-<div class="container mx-auto p-4">
+<div class="container">
   <div class="drawer z-20">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
@@ -60,7 +60,7 @@
           <img src="burger.svg" alt="" class="filter invert w-7" />
         </div>
         <div class="flex items-center gap-1">
-          <span class="text-xl text-white">Bienvenido Admin</span>
+          <span class="text-xl">Bienvenido Admin</span>
           <img src="image.png" class="w-7 filter invert" alt="" />
         </div>
       </label>
@@ -78,33 +78,31 @@
       </ul>
     </div>
   </div>
-  <div class="overflow-x-auto">
-    <table class="table w-full">
-      <thead class="text-white">
-        <tr>
-          {#each title as t}
-            <th> {t}</th>
-          {/each}
-        </tr>
-      </thead>
-      <tbody class="text-blue-200">
-        {#each data as r}
-          <tr>
-            <th>{r.agua_comprada}</th>
-            <th>{r.agua_recolectada}</th>
-            <th>{r.agua_suministrada}</th>
-            <th>{r.agua_gastada}</th>
-            <th>{r.fecha}</th>
-            <th>
-              <button
-                class="bg-white text-blue-700 rounded p-2"
-                on:click={() => verInfo(r)}>ver</button>
-            </th>
-          </tr>
+  <table class="table overflow-y-scroll max-h-full">
+    <thead class="text-white">
+      <tr>
+        {#each title as t}
+          <th> {t}</th>
         {/each}
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    </thead>
+    <tbody class="text-blue-200">
+      {#each data as r}
+        <tr>
+          <th>{r.agua_comprada}</th>
+          <th>{r.agua_recolectada}</th>
+          <th>{r.agua_suministrada}</th>
+          <th>{r.agua_gastada}</th>
+          <th>{r.fecha}</th>
+          <th>
+            <button
+              class="bg-white text-blue-700 rounded p-2"
+              on:click={() => verInfo(r)}>ver</button>
+          </th>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 
   <dialog class="modal" bind:this={dialogRef} id="modal">
     <div class="modal-box">
@@ -112,7 +110,7 @@
         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
       </form>
       <form on:submit={handleEditConsumoReal} class="flex flex-col gap-2">
-        <label class="flex items-center gap-2 input input-bordered w-full mx-auto input-primary text-blue-700 rounded">
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua comprada:
           <input
             type="text"
@@ -122,7 +120,7 @@
             placeholder="12345"
           />
         </label>
-        <label class="flex items-center gap-2 input input-bordered w-full mx-auto input-primary text-blue-700 rounded">
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua sumistrada:
           <input
             type="text"
@@ -131,7 +129,7 @@
             placeholder="12345"
           />
         </label>
-        <label class="flex items-center gap-2 input input-bordered w-full mx-auto input-primary text-blue-700 rounded">
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua Recolectada:
           <input
             type="text"
@@ -140,7 +138,7 @@
             placeholder="12345"
           />
         </label>
-        <label class="flex items-center gap-2 input input-bordered w-full mx-auto input-primary text-blue-700 rounded">
+        <label class="flex items-center gap-2 input input-bordered w-[90%] mx-auto input-primary text-blue-700 rounded">
           Agua gastada:
           <input
             type="text"
@@ -149,7 +147,7 @@
             placeholder="12345"
           />
         </label>
-        <label class="flex items-center gap-2 datepicker-input input input-bordered w-full mx-auto input-primary text-blue-700 placeholder-primary rounded">
+        <label class="flex items-center gap-2 datepicker-input input input-bordered w-[90%] mx-auto input-primary text-blue-700 placeholder-primary rounded">
           fecha:
           <DateInput bind:value={consumoSelected.fecha} format="dd-MM-yyyy" />
         </label>
