@@ -36,7 +36,7 @@
     </div>
     
     <footer class="bg-gray-800 text-white p-4 text-center w-full">
-        <p>SERVIEDUCA | © 1989 - 2024</p>
+        <p>SERVIEDUCA | © 1989 - 2025</p>
         <p>Dirección de Tecnologías de la Información - Unidad de Servicios Web</p>
         <p>Todos los derechos reservados. RIF J-07033322-7</p>
         <Link to='/loginAdmin'>.</Link>
