@@ -8,15 +8,17 @@
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
   import { navigate } from "svelte-routing";
-  import { addConsumoReal, getConsumoRealByMonts } from "../services/admin";
+  import { addConsumoReal, getConsumoRealByMonts, getReportes } from "../services/admin";
   import { DateInput } from "date-picker-svelte";
+  import dayjs from "dayjs";
 
   let formGastoAdmin = {};
   let dialogRef;
   let monthlyChart;
   let chart;
-  let dataChart = {}
+  let dataChart = {};
   let loading = false;
+  let loadingReportes = false;
 
   const monthlyData = [
     {
@@ -132,6 +134,38 @@
     await home();
   }
 
+  async function genReportes() {
+    loadingReportes = true;
+    try {
+      // Hacer una solicitud al servidor Deno
+      const token = localStorage.getItem('token')
+      const response = await getReportes(token);
+
+      if (!response.ok) {
+        throw new Error("Error al obtener el PDF");
+      }
+
+      // Convertir la respuesta a un Blob
+      const blob = await response.blob();
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `reportes_${dayjs().format()}.pdf`; // Nombre del archivo
+      document.body.appendChild(a);
+      a.click(); // Simular clic en el enlace
+
+      // Limpiar el objeto URL
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      alert("Error al descargar el PDF");
+      console.error(error);
+    }
+    loadingReportes = false;
+  }
+
   function handleEdit() {
     navigate("/editar-gasto");
   }
@@ -144,9 +178,9 @@
       console.error(await resp.text());
       return;
     }
-    chart?.destroy()
+    chart?.destroy();
     const { data } = await resp.json();
-    dataChart = data
+    dataChart = data;
     // @ts-ignore
     const ctx = monthlyChart.getContext("2d");
     chart = new Chart(ctx, {
@@ -199,7 +233,7 @@
   onMount(async () => {
     await home();
 
-    return ()=>chart.destroy()
+    return () => chart.destroy();
   });
 </script>
 
@@ -214,7 +248,7 @@
           <img src="burger.svg" alt="" class="filter invert w-7" />
         </div>
         <div class="flex items-center gap-1">
-            <span class="text-xl text-white">Bienvenido Admin</span>
+          <span class="text-xl text-white">Bienvenido Admin</span>
           <img src="image.png" class="w-7 filter invert" alt="" />
         </div>
       </label>
@@ -257,8 +291,15 @@
     >Editar Gasto de Agua</button
   >
   <button class="btn btn-white w-full md:w-auto" on:click={openModal}
-    >Ingresos/Egresos de Agua</button>
-  
+    >Ingresos/Egresos de Agua</button
+  >
+
+  <button class="btn btn-accent w-full md:w-auto" disabled={loadingReportes} on:click={genReportes}>
+    {#if loading}
+      <span class="loading loading-spinner text-primary"></span>
+    {/if}
+    generar reportes</button
+  >
 </div>
 
 <dialog class="modal w-full" bind:this={dialogRef}>
@@ -291,7 +332,6 @@
           max="999999999"
           min="0"
           required
-
         />
 
         <label for="litrosGastados">Litros Gastados:</label>
@@ -321,21 +361,20 @@
           </button>
           <button type="submit" class="btn btn-primary w-full md:w-auto">
             {#if loading}
-              <span class="loading loading-spinner text-primary"></span>
+              <span class="loading loading-spinner text-accent"></span>
             {/if}
             Guardar
           </button>
         </div>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      </form>
+    </div>
+  </div>
+</dialog>
 
 <style>
   :root {
     --date-input-width: 100%;
   }
-
 
   .btn {
     padding: 10px 20px;

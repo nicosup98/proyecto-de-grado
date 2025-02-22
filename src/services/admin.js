@@ -60,3 +60,11 @@ export function addConsumoReal(token,consumoReal) {
     body: JSON.stringify(consumoReal)
   })
 }
+
+export function getReportes(token) {
+  return fetch(`${back_url}/admin/generate-pdf`,{
+    headers: {
+      Authorization:`Bearer ${token}`
+    }
+  })
+}
