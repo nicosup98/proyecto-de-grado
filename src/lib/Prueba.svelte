@@ -441,14 +441,26 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-xl mb-4">Agregar nuevo gasto de agua</h3>
             <label class="block mb-2">
-            Nombre del gasto:
-            <input
-                type="text"
-                bind:value={newExpenseName}
-                class="p-2 border rounded w-full"
-                required
-            />
+                Selecciona un gasto:
+                <select
+                    bind:value={selectedExpenseOption}
+                    class="p-2 border rounded w-full"
+                >
+                    <option value="botellon">Botellon</option>
+                    <option value="Otro">Otro</option>
+                </select>
             </label>
+            {#if selectedExpenseOption === "Otro"}
+                <label class="block mb-2">
+                    Nombre del gasto:
+                    <input
+                        type="text"
+                        bind:value={newExpenseName}
+                        class="p-2 border rounded w-full"
+                        required
+                    />
+                </label>
+            {/if}
             <label class="block mb-4">
                 {selectedExpenseOption == "botellon" ? "botellones" : "litros"} por semana:
                 <input
