@@ -18,8 +18,9 @@
     "Noviembre",
     "Diciembre",
   ];
-  
+
   let dataDashboard = {};
+  let meses_aviso_dashboard = []
 
   const dataOfMonthlyConsumption = [
     { mes: "Enero", consumo: 5000 },
@@ -51,8 +52,9 @@
       alert("ocurrio un error al consultar dashboard");
       console.error(await resp.text());
     }
-    const { data } = await resp.json();
+    const { data, meses_aviso } = await resp.json();
     dataDashboard = data;
+    meses_aviso_dashboard = meses_aviso
     console.log(data);
     const dispenserCanvas = document.getElementById("dispenserChart");
     if (dispenserCanvas instanceof HTMLCanvasElement) {
@@ -260,9 +262,15 @@
       <h2 class="info-box-title">Litros Totales</h2>
       <p class="info-box-body">{dataDashboard.consumo_total}L</p>
     </div>
-    <aside class="flex-col p-3 w-full md:w-[245px]">
-   
- 
+    <aside class="flex flex-col p-3 w-full md:max-w-md  gap-3">
+      <h2 class="text-xl md:mx-auto">meses con limite superado</h2>
+      <div class="flex flex-col md:flex-row gap-3  justify-center w-full">
+        {#each meses_aviso_dashboard as aviso}
+          <div class="p-3 bg-warning text-white rounded-md w-full text-center">
+            {aviso.mes}
+          </div>
+        {/each}
+      </div>
     </aside>
   </section>
   <div class="divider"></div>
