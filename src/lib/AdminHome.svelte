@@ -302,6 +302,12 @@
   @media (min-width: 768px) {
     .charts-grid {
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .charts-grid > .center {
+      grid-column: span 2;
+      justify-self: center;
+      width: 100%; /* Asegura que la tercera gráfica ocupe todo el ancho disponible */
     }
   }
 
