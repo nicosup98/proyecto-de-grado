@@ -8,7 +8,7 @@
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
   import { navigate } from "svelte-routing";
-  import { addConsumoReal, getConsumoRealByMonts, getReportes } from "../services/admin";
+  import { addConsumoReal, getConsumoRealByMonts, getReportes, checkToken, getDashboard } from "../services/admin";
   import { DateInput } from "date-picker-svelte";
   import dayjs from "dayjs";
 
@@ -19,6 +19,8 @@
   let dataChart = {};
   let loading = false;
   let loadingReportes = false;
+  let meses_aviso_dashboard = [];
+  let dataDashboard = {};
 
   const monthlyData = [
     {
@@ -233,6 +235,24 @@
   onMount(async () => {
     await home();
 
+    const token = checkToken();
+    if (!token) {
+      navigate("/");
+    }
+
+    const resp = await getDashboard(null, token);
+    if (!resp.ok) {
+      if (resp.status == 403) {
+        localStorage.clear();
+        navigate("/loginAdmin");
+      }
+      alert("ocurrio un error al consultar dashboard");
+      console.error(await resp.text());
+    }
+    const { data, meses_aviso } = await resp.json();
+    dataDashboard = data;
+    meses_aviso_dashboard = meses_aviso;
+
     return () => chart.destroy();
   });
 </script>
@@ -277,6 +297,7 @@
 </div>
 
 <div class="divider"></div>
+
 <section class="flex justify-around gap-4 text-white">
   <div class="text-center w-full">
     <span class="text-lg" id="consumo-mensual">Consumo Mensual</span>
@@ -284,6 +305,16 @@
       <canvas bind:this={monthlyChart} id="monthlyChart"></canvas>
     </div>
   </div>
+  <aside class="flex flex-col p-3 w-full md:max-w-xs gap-3">
+    <h2 class="text-xl md:mx-auto">Meses con límite superado</h2>
+    <div class="flex flex-col gap-3 justify-center w-full">
+      {#each meses_aviso_dashboard as aviso}
+        <div class="p-2 bg-warning text-white rounded-md w-full text-center text-sm hover:scale-105 transition-transform duration-300">
+          {aviso.mes}
+        </div>
+      {/each}
+    </div>
+  </aside>
 </section>
 
 <div class="flex flex-col md:flex-row justify-around my-4 gap-2 md:gap-4">
@@ -344,12 +375,13 @@
           min="0"
           required
         />
-        <label for="dateInput">fecha</label>
+        <label for="dateInput">Fecha</label>
         <DateInput
           id="dateInput"
-          format="dd-MM-yyyy"
+          format="yyyy-MM"
           bind:value={formGastoAdmin.fecha}
           required
+         
         />
         <div class="flex justify-between mt-4">
           <button
@@ -402,5 +434,9 @@
     width: 100%;
     height: auto;
     max-width: 100%;
+  }
+
+  aside .p-2 {
+    font-size: 0.875rem; /* text-sm */
   }
 </style>
