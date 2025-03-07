@@ -43,7 +43,7 @@
     class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8 w-96 mt-10"
   >
     <div class="image-container w-full h-48 mb-4">
-      <img src="public\organismos-operadores.jpeg" alt="Imagen" class="w-full h-full object-cover rounded-t-lg" />
+      <img src="..\public\organismos-operadores.jpeg" alt="Imagen" class="w-full h-full object-cover rounded-t-lg" />
     </div>
     <form action="" on:submit={handleLogin}>
       <h1 class="text-3xl text-center mb-6">Inicio De Sesión</h1>
