@@ -298,15 +298,15 @@
 
 <div class="divider"></div>
 
-<section class="flex justify-around gap-4 text-white">
-  <div class="text-center w-full">
+<section class="flex flex-col md:flex-row justify-around gap-4 text-white">
+  <div class="text-center w-full md:w-1/2">
     <span class="text-lg" id="consumo-mensual">Consumo Mensual</span>
     <div class="chart-container">
       <canvas bind:this={monthlyChart} id="monthlyChart"></canvas>
     </div>
   </div>
-  <aside class="flex flex-col p-3 w-full md:max-w-xs gap-3">
-    <h2 class="text-xl md:mx-auto">Meses con límite superado</h2>
+  <aside class="flex flex-col p-3 w-full md:w-1/2 gap-3">
+    <h2 class="text-xl md:mx-auto text-center">Meses con Límite Superado</h2>
     <div class="flex flex-col gap-3 justify-center w-full">
       {#each meses_aviso_dashboard as aviso}
         <div class="p-2 bg-warning text-white rounded-md w-full text-center text-sm hover:scale-105 transition-transform duration-300">
@@ -317,7 +317,7 @@
   </aside>
 </section>
 
-<div class="flex flex-col md:flex-row justify-around my-4 gap-2 md:gap-4">
+<div class="flex flex-col md:flex-row justify-start md:justify-around my-4 gap-2 md:gap-4">
   <button class="btn btn-success w-full md:w-auto" on:click={handleEdit}
     >Editar Gasto de Agua</button
   >
@@ -325,12 +325,12 @@
     >Ingresos/Egresos de Agua</button
   >
 
-  <button class="btn btn-accent w-full md:w-auto" disabled={loadingReportes} on:click={genReportes}>
-    {#if loading}
+  <button class="btn btn-warning w-full md:w-auto" disabled={loadingReportes} on:click={genReportes}>
+    {#if loadingReportes}
       <span class="loading loading-spinner text-primary"></span>
     {/if}
-    generar reportes</button
-  >
+    Generar Reportes
+  </button>
 </div>
 
 <dialog class="modal w-full" bind:this={dialogRef}>
