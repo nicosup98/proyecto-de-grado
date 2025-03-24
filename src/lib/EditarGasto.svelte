@@ -60,7 +60,7 @@
           <img src="burger.svg" alt="" class="filter invert w-7" />
         </div>
         <div class="flex items-center gap-1">
-          <span class="text-xl">Bienvenido Admin</span>
+          <span class="text-xl text-white">Bienvenido Admin</span>
           <img src="image.png" class="w-7 filter invert" alt="" />
         </div>
       </label>
