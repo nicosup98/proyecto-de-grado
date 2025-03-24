@@ -8,7 +8,7 @@
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
   import { navigate } from "svelte-routing";
-  import { addConsumoReal, getConsumoRealByMonts, getReportes, checkToken, getDashboard } from "../services/admin";
+  import { addConsumoReal, getConsumoRealByMonts, getReportes, checkToken, getDashboard, getMesesAviso } from "../services/admin";
   import { DateInput } from "date-picker-svelte";
   import dayjs from "dayjs";
 
@@ -240,17 +240,15 @@
       navigate("/");
     }
 
-    const resp = await getDashboard(null, token);
-    if (!resp.ok) {
-      if (resp.status == 403) {
+    const resp_meses_Aviso = await getMesesAviso(token)
+    if (!resp_meses_Aviso.ok) {
+      if (resp_meses_Aviso.status == 403) {
         localStorage.clear();
         navigate("/loginAdmin");
       }
-      alert("ocurrio un error al consultar dashboard");
-      console.error(await resp.text());
+    
     }
-    const { data, meses_aviso } = await resp.json();
-    dataDashboard = data;
+    const {meses_aviso}= await resp_meses_Aviso.json()
     meses_aviso_dashboard = meses_aviso;
 
     return () => chart.destroy();

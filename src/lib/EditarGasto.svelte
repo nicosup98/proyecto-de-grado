@@ -149,7 +149,7 @@
         </label>
         <label class="flex items-center gap-2 datepicker-input input input-bordered w-[90%] mx-auto input-primary text-blue-700 placeholder-primary rounded">
           fecha:
-          <DateInput bind:value={consumoSelected.fecha} format="dd-MM-yyyy" />
+          <DateInput bind:value={consumoSelected.fecha} format="MM-yyyy" />
         </label>
         <div class="flex justify-around">
           <button type="submit" class="btn btn-success text-white rounded">

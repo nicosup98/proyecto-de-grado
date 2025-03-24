@@ -68,3 +68,11 @@ export function getReportes(token) {
     }
   })
 }
+
+export function getMesesAviso(token){
+  return fetch(`${back_url}/admin/meses/aviso`,{
+    headers: {
+      Authorization:`Bearer ${token}`
+    }
+  })
+}
