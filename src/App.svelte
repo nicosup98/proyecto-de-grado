@@ -7,8 +7,8 @@
   import Prueba from "./lib/Prueba.svelte";
   import Layout from "./Layout.svelte";
   import { fade } from 'svelte/transition'
-  import AdminConsumos from "./lib/AdminConsumos.svelte";
-    import EditarGasto from "./lib/EditarGasto.svelte";
+  import AdminConsumos from "./lib/AdminConsumos.svelte";"./lib/AdminConsumos.svelte";
+  import EditarGasto from "./lib/EditarGasto.svelte";
   export let url = "";
 </script>
 

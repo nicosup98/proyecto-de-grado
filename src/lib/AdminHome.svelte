@@ -19,8 +19,9 @@
     "Diciembre",
   ];
 
-  let dataDashboard = {};
-  let meses_aviso_dashboard = []
+  let dataDashboard;
+  let showTimeoutToast = false;
+  let dialogSesionRef;
 
   const dataOfMonthlyConsumption = [
     { mes: "Enero", consumo: 5000 },
@@ -37,6 +38,11 @@
     { mes: "Diciembre", consumo: 4600 },
   ];
 
+  function cerrarSesion() {
+    localStorage.removeItem("token");
+    navigate("/loginAdmin");
+  }
+
   onMount(async () => {
     const token = checkToken();
     if (!token) {
@@ -46,15 +52,18 @@
     const resp = await getDashboard(null, token);
     if (!resp.ok) {
       if (resp.status == 403) {
-        localStorage.clear();
-        navigate("/loginAdmin");
+        showTimeoutToast = true;
+        setTimeout(() => {
+          localStorage.clear();
+          navigate("/loginAdmin");
+        }, 1000);
+        return;
       }
       alert("ocurrio un error al consultar dashboard");
       console.error(await resp.text());
     }
-    const { data, meses_aviso } = await resp.json();
+    const { data } = await resp.json();
     dataDashboard = data;
-    meses_aviso_dashboard = meses_aviso
     console.log(data);
     const dispenserCanvas = document.getElementById("dispenserChart");
     if (dispenserCanvas instanceof HTMLCanvasElement) {
@@ -242,54 +251,91 @@
             >
           </li>
           <li class="my-4">
-            <button class="btn btn-error rounded">Cerrar Sesion</button>
+            <button
+              class="btn btn-error rounded"
+              on:click={() => dialogSesionRef.showModal()}>Cerrar Sesion</button
+            >
           </li>
         </ul>
       </div>
     </div>
   </div>
-
-  <section class="flex flex-wrap justify-around my-3 info-box-section">
-    <div class="info-box">
-      <h2 class="info-box-title">Personas</h2>
-      <p class="info-box-body">{dataDashboard.cantidad_personas}</p>
-    </div>
-    <div class="info-box">
-      <h2 class="info-box-title">Promedio por Persona</h2>
-      <p class="info-box-body">{dataDashboard.promedio_consumo}</p>
-    </div>
-    <div class="info-box">
-      <h2 class="info-box-title">Litros Totales</h2>
-      <p class="info-box-body">{dataDashboard.consumo_total}L</p>
-    </div>
-  </section>
+  {#if !dataDashboard}
+    ...loading
+  {:else}
+    <section class="flex flex-wrap justify-around my-3 info-box-section">
+      <div class="info-box">
+        <h2 class="info-box-title">Personas</h2>
+        <p class="info-box-body">{dataDashboard.cantidad_personas}</p>
+      </div>
+      <div class="info-box">
+        <h2 class="info-box-title">Promedio por Persona</h2>
+        <p class="info-box-body">{dataDashboard.promedio_consumo}</p>
+      </div>
+      <div class="info-box">
+        <h2 class="info-box-title">Litros Totales</h2>
+        <p class="info-box-body">{dataDashboard.consumo_total.toFixed(2)}L</p>
+      </div>
+    </section>
+  {/if}
   <div class="divider"></div>
   <section class="charts-grid">
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-dispensador"
-        >Consumo por Dispensador</span
+      <span
+        class="chart-title text-lg"
+        hidden={!dataDashboard?.consumo_tipo}
+        id="consumo-dispensador">Consumo por Dispensador</span
       >
       <div class="chart-container">
         <canvas id="dispenserChart"></canvas>
       </div>
     </div>
     <div class="text-center">
-      <span class="chart-title text-lg" id="consumo-bloque"
-        >Consumo por Bloque</span
+      <span
+        class="chart-title text-lg"
+        id="consumo-bloque"
+        hidden={!dataDashboard?.consumo_tipo}>Consumo por Bloque</span
       >
       <div class="chart-container">
         <canvas id="blocksChart"></canvas>
       </div>
     </div>
     <div class="text-center center">
-      <span class="chart-title text-lg" id="consumo-persona"
-        >Consumo por Tipo de Persona</span
+      <span
+        class="chart-title text-lg"
+        id="consumo-persona"
+        hidden={!dataDashboard?.consumo_tipo}>Consumo por Tipo de Persona</span
       >
       <div class="chart-container">
         <canvas id="personsChart"></canvas>
       </div>
     </div>
   </section>
+  {#if showTimeoutToast}
+    <div class="toast toast-bottom toast-end">
+      <div class="alert alert-info">
+        <span>sesion expirada redirigiendo al login</span>
+      </div>
+    </div>
+  {/if}
+  <dialog bind:this={dialogSesionRef} class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold text-primary">cerrar sesion</h3>
+      <p class="py-4 text-primary">esta seguro de cerrar sesion ?</p>
+      <div class="flex gap-2">
+        <button class="btn btn-info rounded" on:click={cerrarSesion}
+          >cerrar sesion</button
+        >
+        <button
+          class="btn btn-secondary rounded"
+          on:click={() => dialogSesionRef.close()}>salir</button
+        >
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 </div>
 
 <style>

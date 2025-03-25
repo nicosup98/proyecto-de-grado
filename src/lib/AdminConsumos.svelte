@@ -8,20 +8,28 @@
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
   import { navigate } from "svelte-routing";
-  import { addConsumoReal, getConsumoRealByMonts, getReportes, checkToken, getDashboard, getMesesAviso } from "../services/admin";
+  import {
+    addConsumoReal,
+    getConsumoRealByMonts,
+    getReportes,
+    checkToken,
+    getDashboard,
+    getMesesAviso,
+  } from "../services/admin";
   import { DateInput } from "date-picker-svelte";
   import dayjs from "dayjs";
 
   let formGastoAdmin = {};
   let dialogRef;
+  let showTimeoutToast = false;
+  let dialogSesionRef;
   let monthlyChart;
   let chart;
   let dataChart = {};
   let loading = false;
   let loadingReportes = false;
   let meses_aviso_dashboard = [];
-  let dataDashboard = {};
-
+  let loadingInit = false;
   const monthlyData = [
     {
       month: "Enero",
@@ -109,8 +117,6 @@
     },
   ];
 
-  const dataOFMonths = [];
-
   function openModal() {
     dialogRef.showModal();
   }
@@ -140,7 +146,7 @@
     loadingReportes = true;
     try {
       // Hacer una solicitud al servidor Deno
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem("token");
       const response = await getReportes(token);
 
       if (!response.ok) {
@@ -173,9 +179,18 @@
   }
 
   async function home() {
+    loadingInit = true;
     const token = localStorage.getItem("token");
     const resp = await getConsumoRealByMonts(token);
     if (!resp.ok) {
+      if (resp.status == 403) {
+        showTimeoutToast = true;
+        setTimeout(() => {
+          localStorage.clear();
+          navigate("/loginAdmin");
+        }, 1000);
+        return;
+      }
       alert("ocurrio un error al consultar los datos");
       console.error(await resp.text());
       return;
@@ -229,6 +244,12 @@
         },
       },
     });
+    loadingInit = false;
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem("token");
+    navigate("/loginAdmin");
   }
 
   // @ts-ignore
@@ -240,15 +261,14 @@
       navigate("/");
     }
 
-    const resp_meses_Aviso = await getMesesAviso(token)
+    const resp_meses_Aviso = await getMesesAviso(token);
     if (!resp_meses_Aviso.ok) {
       if (resp_meses_Aviso.status == 403) {
         localStorage.clear();
         navigate("/loginAdmin");
       }
-    
     }
-    const {meses_aviso}= await resp_meses_Aviso.json()
+    const { meses_aviso } = await resp_meses_Aviso.json();
     meses_aviso_dashboard = meses_aviso;
 
     return () => chart.destroy();
@@ -287,7 +307,10 @@
           >
         </li>
         <li class="my-4">
-          <button class="btn btn-error rounded">Cerrar Sesion</button>
+          <button
+            class="btn btn-error rounded"
+            on:click={() => dialogSesionRef.showModal()}>Cerrar Sesion</button
+          >
         </li>
       </ul>
     </div>
@@ -297,7 +320,7 @@
 <div class="divider"></div>
 
 <section class="flex flex-col md:flex-row justify-around gap-4 text-white">
-  <div class="text-center w-full md:w-1/2">
+  <div class="text-center w-full md:w-1/2" hidden={!dataChart}>
     <span class="text-lg" id="consumo-mensual">Consumo Mensual</span>
     <div class="chart-container">
       <canvas bind:this={monthlyChart} id="monthlyChart"></canvas>
@@ -306,16 +329,25 @@
   <aside class="flex flex-col p-3 w-full md:w-1/2 gap-3">
     <h2 class="text-xl md:mx-auto text-center">Meses con Límite Superado</h2>
     <div class="flex flex-col gap-3 justify-center w-full">
-      {#each meses_aviso_dashboard as aviso}
-        <div class="p-2 bg-warning text-white rounded-md w-full text-center text-sm hover:scale-105 transition-transform duration-300">
-          {aviso.mes}
-        </div>
-      {/each}
+      {#if loadingInit}
+        ...loading
+      {:else}
+        {#each meses_aviso_dashboard as aviso}
+          <div
+            class="p-2 bg-warning text-white rounded-md w-full text-center text-sm hover:scale-105 transition-transform duration-300"
+          >
+            {aviso.mes}
+          </div>
+        
+        {/each}
+      {/if}
     </div>
   </aside>
 </section>
 
-<div class="flex flex-col md:flex-row justify-start md:justify-around my-4 gap-2 md:gap-4">
+<div
+  class="flex flex-col md:flex-row justify-start md:justify-around my-4 gap-2 md:gap-4"
+>
   <button class="btn btn-success w-full md:w-auto" on:click={handleEdit}
     >Editar Gasto de Agua</button
   >
@@ -323,14 +355,42 @@
     >Ingresos/Egresos de Agua</button
   >
 
-  <button class="btn btn-warning w-full md:w-auto" disabled={loadingReportes} on:click={genReportes}>
+  <button
+    class="btn btn-warning w-full md:w-auto"
+    disabled={loadingReportes}
+    on:click={genReportes}
+  >
     {#if loadingReportes}
       <span class="loading loading-spinner text-primary"></span>
     {/if}
     Generar Reportes
   </button>
 </div>
-
+{#if showTimeoutToast}
+  <div class="toast toast-bottom toast-end">
+    <div class="alert alert-info">
+      <span>sesion expirada redirigiendo al login</span>
+    </div>
+  </div>
+{/if}
+<dialog bind:this={dialogSesionRef} class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold text-primary">cerrar sesion</h3>
+    <p class="py-4 text-primary">esta seguro de cerrar sesion ?</p>
+    <div class="flex gap-2">
+      <button class="btn btn-info rounded" on:click={cerrarSesion}
+        >cerrar sesion</button
+      >
+      <button
+        class="btn btn-secondary rounded"
+        on:click={() => dialogSesionRef.close()}>salir</button
+      >
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
 <dialog class="modal w-full" bind:this={dialogRef}>
   <div class="modal-box w-full">
     <form method="dialog">
@@ -379,7 +439,6 @@
           format="yyyy-MM"
           bind:value={formGastoAdmin.fecha}
           required
-         
         />
         <div class="flex justify-between mt-4">
           <button
