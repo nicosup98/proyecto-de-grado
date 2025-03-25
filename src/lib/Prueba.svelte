@@ -146,7 +146,7 @@
                     class="text-2xl font-bold text-white animate-clip mt-6"
                     style="position: relative; top: -33px;"
                 >
-                    Formulario de Registro
+                    Formulario de Gasto de Agua
                 </h2>
             </div>
 

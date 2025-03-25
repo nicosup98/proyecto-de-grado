@@ -35,6 +35,44 @@
   href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
   rel="stylesheet"
 />
+<div class="text-white"></div>
+<div class="flex justify-between text-white">
+  <div class="drawer z-20">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- Page content here -->
+      <label for="my-drawer" class="flex animate-slide-in">
+        <div class="btn btn-ghost text-xl drawer-button">
+          <img src="burger.svg" alt="" class="filter invert w-7" />
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="text-xl text-white">Bienvenido Admin</span>
+          <img src="image.png" class="w-7 filter invert" alt="" />
+        </div>
+      </label>
+    </div>
+
+    <div class="drawer-side">
+      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
+      ></label>
+      <ul
+        class="menu bg-base-200 text-base-content min-h-full w-80 p-4 text-white"
+      >
+        <!-- Sidebar content here no se redirecciona asi es con link -->
+        <li>
+          <button
+            class="btn btn-primary rounded"
+            on:click={() => navigate("/")}
+            >Volver al Inicio</button
+          >
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
 <div
   class="flex justify-center items-start min-h-screen bg-cover bg-center"
   style="background-image: url('bg.jpg');"
@@ -43,7 +81,7 @@
     class="wrapper bg-white bg-opacity-20 border-2 border-white border-opacity-20 backdrop-blur-md text-white rounded-lg p-8 w-96 mt-10"
   >
     <div class="image-container w-full h-48 mb-4">
-      <img src="..\public\organismos-operadores.jpeg" alt="Imagen" class="w-full h-full object-cover rounded-t-lg" />
+      <img src="/organismos-operadores.jpeg" alt="Imagen" class="w-full h-full object-cover rounded-t-lg" />
     </div>
     <form action="" on:submit={handleLogin}>
       <h1 class="text-3xl text-center mb-6">Inicio De Sesión</h1>
