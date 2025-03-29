@@ -128,11 +128,26 @@
 
   async function saveForm(e) {
     e.preventDefault();
+
+    // Validación de ingresos y egresos
+    if (
+      (!formGastoAdmin.agua_recolectada || formGastoAdmin.agua_recolectada <= 0) &&
+      (!formGastoAdmin.agua_comprada || formGastoAdmin.agua_comprada <= 0)
+    ) {
+      alert("Debe ingresar al menos uno de los ingresos: 'Litros Recolectados' o 'Litros Comprados'.");
+      return;
+    }
+
+    if (!formGastoAdmin.agua_gastada || formGastoAdmin.agua_gastada <= 0) {
+      alert("El egreso (gasto de agua) debe ser mayor a 0.");
+      return;
+    }
+
     loading = true;
     const token = localStorage.getItem("token");
     const resp = await addConsumoReal(token, formGastoAdmin);
     if (!resp.ok) {
-      alert("ocurrion un error al guardar la informacion");
+      alert("Ocurrió un error al guardar la información.");
       console.error(await resp.text());
       return;
     }
@@ -397,8 +412,8 @@
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         >✕</button
       >
-    </form>
-    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 text-black w-full">
+        </form>
+        <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 text-black w-full">
       <h3 class="text-lg font-bold">Recolección de Agua</h3>
       <form on:submit={saveForm} class="flex flex-col w-full">
         <label for="litrosRecolectados">Litros Recolectados:</label>
@@ -430,7 +445,7 @@
           bind:value={formGastoAdmin.agua_gastada}
           class="input input-bordered w-full mb-4"
           max="9999999999"
-          min="0"
+          min="1"
           required
         />
         <label for="dateInput">Fecha</label>
