@@ -261,7 +261,9 @@
     </div>
   </div>
   {#if !dataDashboard}
-    ...loading
+    <div class="flex justify-center">
+      <img src="preloader55.gif" alt="">
+    </div>
   {:else}
     <section class="flex flex-wrap justify-around my-3 info-box-section">
       <div class="info-box">
