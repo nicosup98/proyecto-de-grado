@@ -118,7 +118,7 @@
         form_results.set(await resp.json());
         setTimeout(() => {
             loader = false;
-            navigate("/respuestas");
+            navigate("/respuestas",{replace: true});
         }, 500);
     }
 </script>

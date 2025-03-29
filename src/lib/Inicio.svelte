@@ -42,7 +42,7 @@
           litros_puntos_rojos: res.litros_puntos_rojos,
         },
       });
-      navigate("/respuestas");
+      navigate("/respuestas",{replace: true});
     } else if (respuestas.status === 404) {
       navigate("/formulario"); // Redirigir a Prueba.svelte
     } else {

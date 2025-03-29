@@ -270,7 +270,7 @@
       </div>
       <div class="info-box">
         <h2 class="info-box-title">Promedio por Persona</h2>
-        <p class="info-box-body">{dataDashboard.promedio_consumo}</p>
+        <p class="info-box-body">{dataDashboard.promedio_consumo}L</p>
       </div>
       <div class="info-box">
         <h2 class="info-box-title">Litros Totales</h2>
